@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Gate;
-use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
@@ -16,8 +16,10 @@ class ProfileController extends Controller
      * @return \Illuminate\View\View
      */
     public function edit()
-    {
-        return view('profile.edit');
+    {    $roles=Role::all();
+        return view('profile.edit',[
+            'roles'=>$roles
+        ]);
     }
 
     /**

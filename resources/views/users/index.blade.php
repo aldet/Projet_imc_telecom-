@@ -119,10 +119,10 @@
                             <div class="clearfix"></div>
                         </a>
                     </li>
-        
-                    
-        
-                    
+
+
+
+
                     <li class="button-container">
                         <a href="https://www.creative-tim.com/product/now-ui-dashboard-laravel" target="_blank" class="btn btn-primary btn-block btn-round">Download Now</a>
                         <a href="https://now-ui-dashboard-laravel.creative-tim.com/docs/getting-started/laravel-setup.html" target="_blank" class="btn btn-default btn-block btn-round">
@@ -131,10 +131,10 @@
                         </a>
                         <a href="https://www.creative-tim.com/product/now-ui-dashboard-pro-laravel?ref=nud-free-upgrade-live" target="_blank" class="btn btn-primary btn-block btn-round"> <i class="now-ui-icons arrows-1_cloud-download-93"></i> Upgrade to PRO</a>
                     </li>
-                    
-        
+
+
                     <li class="header-title">Thank you for 95 shares!</li>
-        
+
                     <li class="button-container text-center">
                         <button id="twitter" class="btn btn-round btn-info sharrre"><i class="fab fa-twitter"></i> · 45</button>
                         <button id="facebook" class="btn btn-round btn-info sharrre"><i class="fab fa-facebook-f"></i> · 50</button>
@@ -309,8 +309,8 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-              <a class="btn btn-primary btn-round text-white pull-right" href="#">Add user</a>
-            <h4 class="card-title">Users</h4>
+              <a class="btn btn-primary btn-round text-white pull-right">Ajouter un utilisateur</a>
+            <h4 class="card-title">Utilisateurs</h4>
             <div class="col-12 mt-2">
                                         </div>
           </div>
@@ -322,38 +322,53 @@
               <thead>
                 <tr>
                   <th>Profile</th>
+                  <th>ID</th>
                   <th>Name</th>
                   <th>Email</th>
-                  <th>Creation date</th>
+                  <th>Roles</th>
                   <th class="disabled-sorting text-right">Actions</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
                   <th>Profile</th>
-                  <th>Name</th>
+                  <th>ID</th>
+                  <th>Noms</th>
                   <th>Email</th>
-                  <th>Creation date</th>
+                  <th>Roles</th>
                   <th class="disabled-sorting text-right">Actions</th>
                 </tr>
               </tfoot>
               <tbody>
-                                  <tr>
+                 @foreach($users as $user)
+              <tr>
                     <td>
                       <span class="avatar avatar-sm rounded-circle">
                         <img src="{{asset('assets')}}/img/default-avatar.png" alt="" style="max-width: 80px; border-radiu: 100px">
                       </span>
                     </td>
-                    <td>Admin</td>
-                    <td>admin@nowui.com</td>
-                    <td>25/02/2020 10:14</td>
-                      <td class="text-right">
-                                             <a type="button" href="#" rel="tooltip" class="btn btn-success btn-icon btn-sm " data-original-title="" title="">
-                        <i class="now-ui-icons ui-2_settings-90"></i>
-                      </a>
-                                                              </td>
+                    <td>{{ $user->id }}</td>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>
+                        @foreach($user->roles as $role)
+                            {{$role->name}}
+                        @endforeach
+                    </td>
+                  <td class="td-actions text-right">
+                      <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon" href="#">
+                          <i class="now-ui-icons users_single-02"></i>
+                      </button>
+                      <a href="{{ route('profile.edit', $user->id) }}"><button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
+                          <i class="now-ui-icons ui-2_settings-90"></i>
+                      </button></a>
+                      <button href="{{ route('profile.edit',$user->id) }}" type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
+                          <i class="now-ui-icons ui-1_simple-remove"></i>
+                      </button>
+                  </td>
                   </tr>
-                              </tbody>
+                 @endforeach
+              </tbody>
             </table>
           </div>
           <!-- end content-->
