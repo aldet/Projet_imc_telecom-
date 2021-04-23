@@ -309,7 +309,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-              <a class="btn btn-primary btn-round text-white pull-right">Ajouter un utilisateur</a>
+              <a href="{{ route('user.create') }}" class="btn btn-primary btn-round text-white pull-right">Ajouter un utilisateur</a>
             <h4 class="card-title">Utilisateurs</h4>
             <div class="col-12 mt-2">
                                         </div>
@@ -359,7 +359,7 @@
                       <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon" href="#">
                           <i class="now-ui-icons users_single-02"></i>
                       </button>
-                      <a href="{{ route('profile.edit', $user->id) }}"><button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
+                      <a href="{{ route('users.edit',$user->id) }}"><button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
                           <i class="now-ui-icons ui-2_settings-90"></i>
                       </button></a>
                       <button href="{{ route('profile.edit',$user->id) }}" type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">

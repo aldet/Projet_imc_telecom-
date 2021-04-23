@@ -92,18 +92,7 @@
                     </span>
                 @endif
                 <!--Begin role user-->
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="now-ui-icons ui-1_email-85"></i>
-                        </div>
-                    </div>
-                    <select class="form-select" aria-label="Default select example">
-                        @foreach($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
+
                 <!--Begin input user type-->
 
                 <!--Begin input password -->

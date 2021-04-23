@@ -34,7 +34,12 @@ class UserRequest extends FormRequest
             ],
             'password' => [
                 $this->route()->user ? 'nullable' : 'required', 'confirmed', 'min:6'
-            ]
+            ],
+            'roles' => [
+                'min:1',
+                'array',
+                // TODO: Add validation for Role (make sure role exists)
+            ],
         ];
     }
 }
