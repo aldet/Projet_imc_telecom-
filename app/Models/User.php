@@ -40,7 +40,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @return \Illuminate\Support\Collection|\Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function roles(){
         return $this->belongsToMany(Role::class);
+    }
+
+    public function isManager()
+    {
+        return $this->roles()->where('name','manager')->first();
+    }
+    public function isPlanificateur()
+    {
+        return $this->roles()->where('name','planificateur')->first();
+    }
+    public function isAdmin()
+    {
+        return $this->roles()->where('name','admin')->first();
     }
 }

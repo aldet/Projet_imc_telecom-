@@ -310,9 +310,8 @@
         <div class="card">
           <div class="card-header">
               <a href="{{ route('user.create') }}" class="btn btn-primary btn-round text-white pull-right">Ajouter un utilisateur</a>
-            <h4 class="card-title">Utilisateurs</h4>
-            <div class="col-12 mt-2">
-                                        </div>
+              <h4 class="card-title">{{auth()->user()->name}}</h4>
+              <div class="col-12 mt-2"></div>
           </div>
           <div class="card-body">
             <div class="toolbar">
@@ -327,6 +326,8 @@
                   <th>Email</th>
                   <th>Roles</th>
                   <th class="disabled-sorting text-right">Actions</th>
+                  <th class="disabled-sorting text-right"></th>
+                  <th class="disabled-sorting text-right"></th>
                 </tr>
               </thead>
               <tfoot>
@@ -337,6 +338,8 @@
                   <th>Email</th>
                   <th>Roles</th>
                   <th class="disabled-sorting text-right">Actions</th>
+                    <th class="disabled-sorting text-right">Actions</th>
+                    <th class="disabled-sorting text-right">Actions</th>
                 </tr>
               </tfoot>
               <tbody>
@@ -356,16 +359,21 @@
                         @endforeach
                     </td>
                   <td class="td-actions text-right">
-                      <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon" href="#">
-                          <i class="now-ui-icons users_single-02"></i>
-                      </button>
-                      <a href="{{ route('users.edit',$user->id) }}"><button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
-                          <i class="now-ui-icons ui-2_settings-90"></i>
+                      <a href="{{ route('user.show',$user->id) }}"><button type="button" rel="tooltip" class="btn btn-info" href="#">Voir
                       </button></a>
-                      <button href="{{ route('profile.edit',$user->id) }}" type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
-                          <i class="now-ui-icons ui-1_simple-remove"></i>
-                      </button>
                   </td>
+                  <td>
+                      <a href="{{ route('user.edit',$user->id) }}"><button type="button" rel="tooltip" class="btn btn-warning">Modifier
+                      </button></a>
+                  </td>
+                       <td>
+                            <form action="{{route('user.destroy',$user->id)}}" method="POST">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button rel="tooltip" type="submit" class="btn btn-danger">Supprimer
+                                  </button>
+                              </form>
+                         </td>
                   </tr>
                  @endforeach
               </tbody>
