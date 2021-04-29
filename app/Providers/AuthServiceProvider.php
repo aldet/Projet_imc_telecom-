@@ -47,5 +47,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('planificateur', function (User $user) {
             return $user->isPlanificateur();
         });
+         Gate::define('technicien', function (User $user) {
+             return $user->isTechnicien();
+         });
     }
 }

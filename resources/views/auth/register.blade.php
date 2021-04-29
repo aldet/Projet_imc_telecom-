@@ -113,7 +113,7 @@
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <div class="input-group-text">
-                      <i class="now-ui-icons objects_key-25"></i></i>
+                      <i class="now-ui-icons objects_key-25"></i>
                     </div>
                   </div>
                   <input class="form-control" placeholder="{{ __('Confirm Password') }}" type="password" name="password_confirmation" required>

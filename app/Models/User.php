@@ -60,4 +60,8 @@ class User extends Authenticatable
     {
         return $this->roles()->where('name','admin')->first();
     }
+    public function isTechnicien()
+    {
+        return $this->roles()->where('name','technicien')->first();
+    }
 }
