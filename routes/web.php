@@ -24,6 +24,7 @@ Auth::routes();
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::resource('client','App\http\Controllers\ClientController');
+Route::resource('technicien','App\http\Controllers\TechnicienController');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController');
