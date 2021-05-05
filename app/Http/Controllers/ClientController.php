@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientRequest;
+use App\Models\Commune;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Client;
@@ -17,7 +18,7 @@ class ClientController extends Controller
     public function index()
     {
         /** @var Client[] $clients */
-        $clients = Client::with(["personne"])->get();
+        $clients = Client::with(["personne","commune"])->get();
         //dd($clients);
         return view('clients.index', ['clients' => $clients]);
     }
@@ -30,8 +31,10 @@ class ClientController extends Controller
     public function create()
     {   $client=new Client();
         $client->personne=new Personne();
+        $communes=Commune::all(['id','name_commune']);
         return view('clients.create',[
-            'client'=>$client
+            'client'=>$client,
+            'communes'=>$communes
         ]);
     }
 

@@ -46,8 +46,8 @@ class TechnicienController extends Controller
      */
     public function store(TechnicienRequest $request)
     {
-        $technicien=new Technicien();
-        $data=$request->validated();
+        $technicien = new Technicien();
+        $data = $request->validated();
         $technicien->fill($data['technicien'])->save();
         $technicien->personne()->create($data['personne']);
         return response()->redirectToRoute('technicien.index');

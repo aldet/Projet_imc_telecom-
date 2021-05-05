@@ -12,20 +12,20 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="title p-5">Ajouter un Technicien</h5>
+                        <h5 class="title p-5">Modifier technicien</h5>
                     </div>
-                    <form method="POST" action="{{route('technicien.store')}}">
+                    <form method="post" action="{{route('technicien.update', $technicien)}}">
                         @csrf
-                        @method("POST")
+                        @method('PUT')
                         <div class="card-body">
                             @include('techniciens._form',['action'=>route('technicien.store'),'method'=>'POST'])
                         </div>
                         <div class="card-footer text-center">
-                            <a href="{{route('technicien.index')}}" class="btn btn-default btn-round mr-4">{{__('Cancel')}}</a>
-                            <button type="submit" class="btn bt n-primary btn-round">{{__('Save')}}</button>
+                            <a href="{{ route('technicien.show',$technicien) }}" class="btn btn-default btn-round mr-4">{{__('Cancel')}}</a>
+                            <button type="submit" class="btn btn-primary btn-round">{{__('Save')}}</button>
                         </div>
                     </form>
-               </div>
+                </div>
             </div>
         </div>
     </div>

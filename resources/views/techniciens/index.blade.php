@@ -33,7 +33,22 @@
                                 <tr>
                                     <td>{{$technicien->id}}</td>
                                     <td>{{$technicien->matricule}}</td>
+                                    <td> {{ $technicien->personne->name }}</td>
                                     <td> {{ $technicien->personne->prenom }}</td>
+                                    <td> {{ $technicien->personne->email}}</td>
+                                    <td>
+                                        <a href="{{ route('technicien.show',$technicien->id) }}"><button type="button" class="btn btn-info">voir</button></a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('technicien.edit',$technicien->id) }}"><button type="button" class="btn btn-warning">Modifier</button></a>
+                                    </td>
+                                    <td>
+                                        <form method="POST" action="{{route('technicien.destroy',$technicien->id)}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button rel="tooltip" type="submit" class="btn btn-danger ">Supprimer</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

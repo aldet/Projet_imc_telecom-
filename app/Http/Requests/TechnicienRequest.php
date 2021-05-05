@@ -26,7 +26,7 @@ class TechnicienRequest extends FormRequest
         $technicien=$this->route()->parameter('technicien');
 
         return [
-            'tecnicien.matricule'=>['required','min:2','max:50'],
+            'technicien.matricule'=>['required','min:2','max:50'],
             'personne.name'=>'required',
             'personne.prenom'=>'required',
             'personne.email'=>'required',
