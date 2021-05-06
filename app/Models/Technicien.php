@@ -21,4 +21,8 @@ class Technicien extends Model
     {
         return $this->morphOne(Personne::class,'human');
     }
+    public function competences()
+    {
+        $this->belongsToMany(Competence::class);
+    }
 }

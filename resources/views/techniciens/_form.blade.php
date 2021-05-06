@@ -49,5 +49,13 @@
         @include('alerts.feedback', ['field' => 'personne.telephone_fixe'])
     </div>
 </div>
+<div class="form-group">
+  <label class="form-control-label">{{__('Competence')}}</label>
+  <select multiple class="form-control">
+      @foreach($competences as $competence)
+          <option value="{{$competence->id}}">{{$competence->label}}</option>
+      @endforeach
+  </select>
+</div>
 
 

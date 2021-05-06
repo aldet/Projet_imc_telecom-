@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TechnicienRequest;
+use App\Models\Competence;
 use App\Models\Personne;
 use Illuminate\Http\Request;
 use App\Models\Technicien;
+use function GuzzleHttp\Promise\all;
+
 class TechnicienController extends Controller
 {
     /**
@@ -17,11 +20,9 @@ class TechnicienController extends Controller
     {
         /** @var Technicien[] $techniciens */
 
-        $techniciens=Technicien::with(["personne"])->get();
+        $techniciens=Technicien::with(["personne","competences"])->get();
          //dd($techniciens);
-        return view('techniciens.index',[
-            'techniciens'=>$techniciens
-        ]);
+        return view('techniciens.index',['techniciens'=>$techniciens]);
     }
 
     /**
@@ -33,8 +34,10 @@ class TechnicienController extends Controller
     {
         $technicien=new Technicien();
         $technicien->personne=new Personne();
+        $competences=Competence::all();
         return view('techniciens.create',[
-            'technicien'=>$technicien
+            'technicien'=>$technicien,
+            'competences'=>$competences
         ]);
     }
 
@@ -74,8 +77,10 @@ class TechnicienController extends Controller
      */
     public function edit(Technicien $technicien)
     {
+        $competences=Competence::all();
         return view('techniciens.edit',[
-            'technicien'=>$technicien
+            'technicien'=>$technicien,
+            'competences'=>$competences
         ]);
     }
 

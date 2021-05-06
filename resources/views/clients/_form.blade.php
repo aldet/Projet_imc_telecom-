@@ -49,4 +49,13 @@
         @include('alerts.feedback', ['field' => 'telephone_fixe'])
     </div>
 </div>
-
+<div class="form-group">
+    <label class="form-control-label" for="form_id_commune">{{ __('Commune') }}</label>
+    <div class="select">
+        <select name="id_commune" class="form-control">
+            @foreach($communes as $commune)
+                <option value="{{$commune->commune_id}}" name="commune_id">{{$commune->name_commune}}</option>
+            @endforeach
+        </select>
+    </div>
+</div>

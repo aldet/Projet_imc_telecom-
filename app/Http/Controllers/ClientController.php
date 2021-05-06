@@ -20,7 +20,8 @@ class ClientController extends Controller
         /** @var Client[] $clients */
         $clients = Client::with(["personne","commune"])->get();
         //dd($clients);
-        return view('clients.index', ['clients' => $clients]);
+        return view('clients.index',
+            ['clients' => $clients]);
     }
 
     /**
@@ -72,9 +73,10 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-
+        $communes=Commune::all(['id','name_commune']);
         return view('clients.edit',[
-            'client'=>$client
+            'client'=>$client,
+            'communes'=>$communes
         ]);
     }
 

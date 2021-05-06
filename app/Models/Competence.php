@@ -10,4 +10,8 @@ class Competence extends Model
     use HasFactory;
     protected $fillable=['label','description'];
 
+    public function techniciens()
+    {
+         return $this->belongsToMany(Technicien::class);
+    }
 }
