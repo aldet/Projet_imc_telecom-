@@ -40,16 +40,16 @@
                                           <td> {{ $client->personne->email }}</td>
                                           <td> {{ $client->commune ? $client->commune->name_commune : "" }}</td>
                                           <td>
-                                              <a href="{{ route('client.show',$client->id) }}"><button type="button" class="btn btn-info">voir</button></a>
+                                              <a href="{{ route('client.show',$client->id) }}"><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
                                           </td>
                                           <td>
-                                              <a href="{{ route('client.edit',$client->id) }}"><button type="button" class="btn btn-warning">Modifier</button></a>
+                                              <a href="{{ route('client.edit',$client->id) }}"><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
                                           </td>
                                           <td>
                                               <form method="POST" action="{{route('client.destroy',$client->id)}}">
                                                   @csrf
                                                   @method('DELETE')
-                                                  <button rel="tooltip" type="submit" class="btn btn-danger ">Supprimer</button>
+                                                  <button rel="tooltip" type="submit" class="btn btn-danger "><i class="fas fa-user-slash"></i></button>
                                               </form>
                                           </td>
                                       </tr>

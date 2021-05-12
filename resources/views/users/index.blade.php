@@ -359,18 +359,18 @@
                         @endforeach
                     </td>
                   <td class="td-actions text-right">
-                      <a href="{{ route('user.show',$user->id) }}"><button type="button" rel="tooltip" class="btn btn-info" href="#">Voir
+                      <a href="{{ route('user.show',$user->id) }}"><button type="button" rel="tooltip" class="btn btn-info" href="#"><i class="fas fa-eye"></i>
                       </button></a>
                   </td>
                   <td>
-                      <a href="{{ route('user.edit',$user->id) }}"><button type="button" rel="tooltip" class="btn btn-warning">Modifier
+                      <a href="{{ route('user.edit',$user->id) }}"><button type="button" rel="tooltip" class="btn btn-warning"><i class="fas fa-edit"></i>
                       </button></a>
                   </td>
                        <td>
                             <form action="{{route('user.destroy',$user->id)}}" method="POST">
                                   @csrf
                                   @method('DELETE')
-                                  <button rel="tooltip" type="submit" class="btn btn-danger">Supprimer
+                                <button rel="tooltip" type="submit" class="btn btn-danger"><i class="fas fa-user-slash"></i>
                                   </button>
                               </form>
                          </td>

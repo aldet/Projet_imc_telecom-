@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 class Technicien extends Model
 {
     use HasFactory;
-    protected $fillable=['matricule'];
+    protected $fillable=['matricule','photo'];
 
     public function personne()
     {
@@ -23,6 +23,6 @@ class Technicien extends Model
     }
     public function competences()
     {
-        $this->belongsToMany(Competence::class);
+        return $this->belongsToMany(Competence::class);
     }
 }

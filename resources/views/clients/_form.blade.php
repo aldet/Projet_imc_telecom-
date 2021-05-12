@@ -1,3 +1,12 @@
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="form-row">
     <div class="form-group  col-md-6 {{$errors->has('name') ? 'has-danger': ''}}">
         <label class="form-control-label" for="form_name_client">{{ __('Nom') }}</label>
@@ -52,9 +61,9 @@
 <div class="form-group">
     <label class="form-control-label" for="form_id_commune">{{ __('Commune') }}</label>
     <div class="select">
-        <select name="id_commune" class="form-control">
+        <select name="client[commune_id]" class="form-control">
             @foreach($communes as $commune)
-                <option value="{{$commune->commune_id}}" name="commune_id">{{$commune->name_commune}}</option>
+                <option value="{{$commune->id}}" >{{$commune->name_commune}}</option>
             @endforeach
         </select>
     </div>

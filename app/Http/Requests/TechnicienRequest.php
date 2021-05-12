@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
 class TechnicienRequest extends FormRequest
 {
     /**
@@ -27,7 +26,8 @@ class TechnicienRequest extends FormRequest
 
         return [
             'technicien.matricule'=>['required','min:2','max:50'],
-            'personne.name'=>'required',
+            'photo'=>'image|max:5000',
+            'personne.name_dieuveil'=>'required',
             'personne.prenom'=>'required',
             'personne.email'=>'required',
             'personne.telephone'=>'required',
@@ -35,6 +35,7 @@ class TechnicienRequest extends FormRequest
             'personne.code_postal' => 'required',
             'personne.adresse_map' => 'required',
             'personne.telephone_fixe' => 'required',
+            'id_des_competences_du_technicien'=>'min:1'
         ];
     }
 }

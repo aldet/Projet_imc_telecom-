@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClientRequest;
 use App\Models\Commune;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use App\Models\Personne;
+use Illuminate\Support\Facades\DB;
+
 class ClientController extends Controller
 {
     /**
@@ -49,9 +52,18 @@ class ClientController extends Controller
     {
         $client = new Client();
         $data = $request->validated();
-        $client->fill($data['client'])->save();
-        $client->personne()->create($data['personne']);
-        return response()->redirectToRoute('client.index');
+        dd($data);
+        try {
+            DB::beginTransaction();
+            $client->fill($data['client'])->save();
+            $client->personne()->create($data['personne']);
+            DB::commit();
+            return response()->redirectToRoute('client.index');
+        }
+        catch (\Throwable $e) {
+            DB::rollBack();
+            return redirect()->route('client.create');
+        }
     }
 
     /**

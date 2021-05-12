@@ -1,7 +1,17 @@
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="form-row">
    <div class="form-group col-md-6 {{$errors->has('personne.name') ? 'has-danger' : ''}}">
        <label class="form-control-label" for="form_name_technicien" >{{__('Nom')}}</label>
-       <input type="text" name="personne[name]" id="form_name_technicien" required class="form-control {{$errors->has('name') ? 'is-invalid':''}}" placeholder="{{__('nom')}}" value="{{ old('personne.name', $technicien->personne->name) }}">
+       <input type="text" name="personne[name_dieuveil]" id="form_name_technicien" required class="form-control {{$errors->has('name') ? 'is-invalid':''}}" placeholder="{{__('nom')}}" value="{{ old('personne.name', $technicien->personne->name) }}">
        @include('alerts.feedback',['field'=>'personne.name'])
    </div>
     <div class="form-group  col-md-6 {{$errors->has('personne.prenom') ? 'has-danger': ''}}">
@@ -10,15 +20,22 @@
         @include('alerts.feedback', ['field' => 'personne.prenom'])
     </div>
 </div>
-<div class="form-group {{$errors->has('personne.email') ? 'has-danger': ''}}">
-    <label class="form-control-label" for="form_email_client">{{ __('Email') }}</label>
-    <input type="email" name="personne[email]" id="form_email_technicien" required class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('email') }}" value="{{ old('personne.email', $technicien->personne->email) }}">
-    @include('alerts.feedback', ['field' => 'personne.email'])
+<div class="form-group {{$errors->has('email') ? 'has-danger': ''}}">
+    <label class="form-control-label" for="form_email_technicien">{{ __('Email') }}</label>
+    <input type="email" name="personne[email]" id="form_prenom_client" required class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('email') }}" value="{{  $technicien->personne->email}}">
+    @include('alerts.feedback', ['field' => 'email'])
 </div>
-<div class="form-group {{$errors->has('matricule') ? 'has-danger': ''}}">
-    <label class="form-control-label" for="form_matricule_technicien">{{ __('Matricule') }}</label>
-    <input type="text" name="technicien[matricule]" id="form_matricule_personne" required class="form-control {{ $errors->has('matricule') ? ' is-invalid' : '' }}" placeholder="{{ __('matricule') }}" value="{{  old('technicien.matricule', $technicien->matricule) }}">
-    @include('alerts.feedback', ['field' => 'matricule'])
+<div class="form-row">
+    <div class="form-group col-md-6 {{$errors->has('matricule') ? 'has-danger': ''}}">
+        <label class="form-control-label" for="form_matricule_technicien">{{ __('Matricule') }}</label>
+        <input type="text" name="technicien[matricule]" id="form_matricule_personne" required class="form-control {{ $errors->has('matricule') ? ' is-invalid' : '' }}" placeholder="{{ __('matricule') }}" value="{{  old('technicien.matricule', $technicien->matricule) }}">
+        @include('alerts.feedback', ['field' => 'matricule'])
+    </div>
+    <div class="mb-3 col-md-6 {{$errors->has('photo') ? 'has-danger':''}}">
+        <label for="form_photo_technicien" class="form-control-label">{{ __('Photo') }}</label>
+        <input  type="file" name="photo" id="form_photo_technicien" required class="form-control {{$errors->has('photo') ? 'is-invalid':''}}" >
+        @include('alerts.feedback',['field'=>'photo'])
+    </div>
 </div>
 <div class="form-row">
     <div class="form-group col-md-6 {{$errors->has('personne.adresse') ? 'has-danger': ''}}">
@@ -51,11 +68,12 @@
 </div>
 <div class="form-group">
   <label class="form-control-label">{{__('Competence')}}</label>
-  <select multiple class="form-control">
+  <select name="id_des_competences_du_technicien[]" multiple class="form-control">
       @foreach($competences as $competence)
           <option value="{{$competence->id}}">{{$competence->label}}</option>
       @endforeach
   </select>
 </div>
+
 
 

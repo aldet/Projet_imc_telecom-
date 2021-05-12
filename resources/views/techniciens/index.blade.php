@@ -23,6 +23,7 @@
                                    <th scope="col">Nom</th>
                                    <th scope="col">Prenom</th>
                                    <th scope="col">Email</th>
+                                   <th scope="col">Competence</th>
                                    <th scope="col">Voir</th>
                                    <th scope="col">Modifier</th>
                                    <th scope="col">Supprimer</th>
@@ -37,16 +38,21 @@
                                     <td> {{ $technicien->personne->prenom }}</td>
                                     <td> {{ $technicien->personne->email}}</td>
                                     <td>
-                                        <a href="{{ route('technicien.show',$technicien->id) }}"><button type="button" class="btn btn-info">voir</button></a>
+                                        @foreach ($technicien->competences as $competence)
+                                          {{$competence->label}}
+                                        @endforeach
                                     </td>
                                     <td>
-                                        <a href="{{ route('technicien.edit',$technicien->id) }}"><button type="button" class="btn btn-warning">Modifier</button></a>
+                                        <a href="{{ route('technicien.show',$technicien->id) }}"><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('technicien.edit',$technicien->id) }}"><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
                                     </td>
                                     <td>
                                         <form method="POST" action="{{route('technicien.destroy',$technicien->id)}}">
                                             @csrf
                                             @method('DELETE')
-                                            <button rel="tooltip" type="submit" class="btn btn-danger ">Supprimer</button>
+                                            <button rel="tooltip" type="submit" class="btn btn-danger "><i class="fas fa-user-slash"></i></button>
                                         </form>
                                     </td>
                                 </tr>

@@ -14,7 +14,7 @@
                     <div class="card-header">
                         <h5 class="title p-5">Ajouter un Technicien</h5>
                     </div>
-                    <form method="POST" action="{{route('technicien.store')}}">
+                    <form method="POST" action="{{route('technicien.store')}}" enctype="multipart/form-data">
                         @csrf
                         @method("POST")
                         <div class="card-body">

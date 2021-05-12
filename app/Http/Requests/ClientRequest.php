@@ -33,6 +33,9 @@ class ClientRequest extends FormRequest
             'personne.code_postal' => 'required',
             'personne.telephone' => 'required',
             'personne.telephone_fixe' => 'required',
+            'personne.adresse_map'=>'',
+            'client.commune_id'=>'required',
+
          ];
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Competence;
 use App\Models\Personne;
 use Illuminate\Http\Request;
 use App\Models\Technicien;
+use Illuminate\Support\Facades\DB;
 use function GuzzleHttp\Promise\all;
 
 class TechnicienController extends Controller
@@ -34,7 +35,8 @@ class TechnicienController extends Controller
     {
         $technicien=new Technicien();
         $technicien->personne=new Personne();
-        $competences=Competence::all();
+        $competences=Competence::all(['id','label']);
+        //$technicien->attach($competences);
         return view('techniciens.create',[
             'technicien'=>$technicien,
             'competences'=>$competences
@@ -51,9 +53,22 @@ class TechnicienController extends Controller
     {
         $technicien = new Technicien();
         $data = $request->validated();
-        $technicien->fill($data['technicien'])->save();
-        $technicien->personne()->create($data['personne']);
-        return response()->redirectToRoute('technicien.index');
+        $path=$request->file('photo')->store('photos_techniciens');
+        $data["technicien"]["photo"]=$path;
+//         dd($request->post(), $data);
+        try {
+            DB::beginTransaction();
+            $technicien->fill($data['technicien'])->save();
+            $technicien->personne()->create($data['personne']);
+            $technicien->competences()->sync($data['id_des_competences_du_technicien']);
+            DB::commit();
+            return response()->redirectToRoute('technicien.index');
+        }
+        catch (\Throwable $e) {
+            DB::rollBack();
+            return redirect()->route('technicien.create');
+        }
+
     }
 
     /**
@@ -64,7 +79,7 @@ class TechnicienController extends Controller
      */
     public function show(Technicien $technicien)
     {
-        return view('technicien.show',[
+        return view('techniciens.show',[
             'technicien'=>$technicien
         ]);
     }
