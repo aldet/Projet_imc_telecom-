@@ -35,6 +35,7 @@ class ClientRequest extends FormRequest
             'personne.telephone_fixe' => 'required',
             'personne.adresse_map'=>'',
             'client.commune_id'=>'required',
+            'client.residence_id'=>'required'
 
          ];
     }

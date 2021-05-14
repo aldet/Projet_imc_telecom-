@@ -25,6 +25,7 @@
                                       <th scope="col">Prenom</th>
                                       <th scope="col">Email</th>
                                       <th scope="col">commune</th>
+                                      <th scope="col">Typ residence</th>
                                       <th scope="col">Voir</th>
                                       <th scope="col">Modifier</th>
                                       <th scope="col">Supprimer</th>
@@ -39,6 +40,7 @@
                                           <td>{{ $client->personne->prenom }}</td>
                                           <td> {{ $client->personne->email }}</td>
                                           <td> {{ $client->commune ? $client->commune->name_commune : "" }}</td>
+                                          <td>{{$client->residence ? $client->residence->label : ""}}</td>
                                           <td>
                                               <a href="{{ route('client.show',$client->id) }}"><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
                                           </td>

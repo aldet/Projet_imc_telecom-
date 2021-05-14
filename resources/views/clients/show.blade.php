@@ -4,7 +4,6 @@
     'backgroundImage' => asset('assets') . "/img/bg16.jpg",
 ])
 @section('content')
-@section('content')
     <div class="panel-header panel-header-sm">
     </div>
     <div class="content">
@@ -12,7 +11,8 @@
             <div class="col-md-6 p-5">
                 <div class="alert alert-dark text-black-50" role="alert">
                     <h6 class="alert-heading text-uppercase">{{$client->personne->name}} {{$client->personne->prenom}}</h6>
-                    <p>{{$client->personne->telephone}}</p>
+                    <p>{{$client->residence ? $client->residence->label : ""}}</p>
+                    <p><i class="fas fa-mobile-alt"></i> {{$client->personne->telephone}}</p>
                 </div>
                 <div class="alert alert-info"  role="alert">
                    <div>
@@ -28,7 +28,7 @@
                            <div class="text-secondary">Marché / Commande</div>
                        </div>
                         <div id="adresse">
-                            <div class="text-secondary">Adresse client</div>
+                            <div class="text-secondary"><i class="fas fa-map-marker-alt"></i> Adresse client</div>
                             <p class="font-weight-normal">{{$client->personne->adresse}}</p>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                                 <p>{{$client->matricule}}</p>
                             </div>
                             <div id="email">
-                                <p class="text-secondary">Email</p>
+                                <p class="text-secondary"><i class="far fa-envelope"></i> Email</p>
                                 <p>{{$client->personne->email}}</p>
                             </div>
                             <div id="commune" class="p-0">
@@ -56,7 +56,9 @@
                     <h6>Bilan client</h6>
                 </div>
                <div>
-                   <button type="button"  class="btn btn-lg btn-info" disabled>Planifier</button>
+                   <a href="#"><button type="button"  class="btn btn-outline-info">Planifier intervention</button></a>
+                   <a href="#"><button type="button" class="btn  btn-outline-warning">Replanifier intervention</button></a>
+                   <a href="#"><button type="button" class="btn  btn-outline-danger">Annuler intervention</button></a>
                </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Consigne</label>

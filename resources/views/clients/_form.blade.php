@@ -43,7 +43,7 @@
 </div>
 <div class="form-group {{$errors->has('adresse_map') ? 'has-danger': ''}}">
     <label class="form-control-label" for="form_adresse_map_client">{{ __('Adresse map') }}</label>
-    <input type="text" name="personne[adresse_map]" id="form_adresse_map_client" required class="form-control {{ $errors->has('adresse_map') ? ' is-invalid' : '' }}" placeholder="{{ __('adresse map') }}" value="{{  $client->adresse_map}}">
+    <input type="text" name="personne[adresse_map]" id="form_adresse_map_client" required class="form-control {{ $errors->has('adresse_map') ? ' is-invalid' : '' }}" placeholder="{{ __('adresse map') }}" value="{{  $client->personne->adresse_map}}">
     @include('alerts.feedback', ['field' => 'adresse_map'])
 </div>
 <div class="form-row">
@@ -64,6 +64,16 @@
         <select name="client[commune_id]" class="form-control">
             @foreach($communes as $commune)
                 <option value="{{$commune->id}}" >{{$commune->name_commune}}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label class="form-control-label" for="form_residence_id">{{__('Type residence')}}</label>
+    <div class="select">
+        <select name="client[residence_id]" class="form-control">
+            @foreach($residences as $residence)
+                <option value="{{$residence->id}}">{{$residence->label}}</option>
             @endforeach
         </select>
     </div>

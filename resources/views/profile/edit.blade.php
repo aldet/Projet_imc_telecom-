@@ -31,6 +31,13 @@
                                 @include('alerts.feedback', ['field' => 'name'])
                         </div>
                     </div>
+                    <div class="col-md-7 pr-1">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">{{__(" Email address")}}</label>
+                            <input type="email" name="email" class="form-control" placeholder="Email" value="{{ old('email', auth()->user()->email) }}">
+                            @include('alerts.feedback', ['field' => 'email'])
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                   <div class="col-md-7 pr-1">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientRequest;
 use App\Models\Commune;
+use App\Models\Residence;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class ClientController extends Controller
     public function index()
     {
         /** @var Client[] $clients */
-        $clients = Client::with(["personne","commune"])->get();
+        $clients = Client::with(["personne","commune","residence"])->get();
         //dd($clients);
         return view('clients.index',
             ['clients' => $clients]);
@@ -36,9 +37,11 @@ class ClientController extends Controller
     {   $client=new Client();
         $client->personne=new Personne();
         $communes=Commune::all(['id','name_commune']);
+        $residences=Residence::all(['id','label']);
         return view('clients.create',[
             'client'=>$client,
-            'communes'=>$communes
+            'communes'=>$communes,
+            'residences'=>$residences
         ]);
     }
 
@@ -52,7 +55,7 @@ class ClientController extends Controller
     {
         $client = new Client();
         $data = $request->validated();
-        dd($data);
+        //dd($data);
         try {
             DB::beginTransaction();
             $client->fill($data['client'])->save();
@@ -86,9 +89,11 @@ class ClientController extends Controller
     public function edit(Client $client)
     {
         $communes=Commune::all(['id','name_commune']);
+        $residences=Residence::all(['id','label']);
         return view('clients.edit',[
             'client'=>$client,
-            'communes'=>$communes
+            'communes'=>$communes,
+            'residences'=>$residences
         ]);
     }
 
