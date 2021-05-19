@@ -56,13 +56,14 @@
                     <h6>Bilan client</h6>
                 </div>
                <div>
-                   <a href="#"><button type="button"  class="btn btn-outline-info">Planifier intervention</button></a>
+                   <a href="#"><button type="button"  class="btn btn-info">Planifier intervention</button></a>
                    <a href="#"><button type="button" class="btn  btn-outline-warning">Replanifier intervention</button></a>
-                   <a href="#"><button type="button" class="btn  btn-outline-danger">Annuler intervention</button></a>
+                   <a href="#"><button type="button" class="btn btn-outline-danger">Annuler intervention</button></a>
                </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Consigne</label>
                     <textarea class="form-control border-primary rounded" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <div class="mt-2"><i class="far fa-save"></i> <i class="far fa-window-close"></i></div>
                 </div>
             </div>
         </div>

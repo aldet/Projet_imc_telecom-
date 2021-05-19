@@ -32,16 +32,16 @@
                                     <td>{{$residence->id}}</td>
                                     <td>{{$residence->label}}</td>
                                     <td>
-                                        <a href="{{ route('residence.show',$residence->id) }}"><button type="button" class="btn btn-info">voir</button></a>
+                                        <a href="{{ route('residence.show',$residence->id) }}"><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
                                     </td>
                                     <td>
-                                        <a href="{{ route('$residence.edit',$residence->id) }}"><button type="button" class="btn btn-warning">Modifier</button></a>
+                                        <a href="{{ route('residence.edit',$residence->id) }}"><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
                                     </td>
                                     <td>
-                                        <form method="POST" action="{{route('$residence.destroy',$residence->id)}}">
+                                        <form method="POST" action="{{route('residence.destroy',$residence->id)}}">
                                             @csrf
                                             @method('DELETE')
-                                            <button rel="tooltip" type="submit" class="btn btn-danger ">Supprimer</button>
+                                            <button rel="tooltip" type="submit" class="btn btn-danger "><i class="fas fa-user-slash"></i></button>
                                         </form>
                                     </td>
                                 </tr>

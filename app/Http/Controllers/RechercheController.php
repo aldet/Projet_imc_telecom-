@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Commune;
-use  App\Http\Requests\ResidenceRequest;
+use Illuminate\Http\Request;
 use App\Models\Residence;
-
-class ResidenceController extends Controller
+use App\Models\Commune;
+use App\Models\Technicien;
+use App\Models\Client;
+class RechercheController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +15,14 @@ class ResidenceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $residences=Residence::all();
-        return view('residences.index',[
-            'residences'=>$residences
+    {   $residences=Residence::all('id','label');
+        $communes=Commune::all('id','name_commune');
+        $techniciens=Technicien::with(["personne","competences"])->get();
+        //$techniciens->personne=Personne::all('id');
+        return view('recherche.index',[
+            'residences'=>$residences,
+            'communes'=>$communes,
+            'techniciens'=>$techniciens
         ]);
     }
 
@@ -28,10 +33,7 @@ class ResidenceController extends Controller
      */
     public function create()
     {
-        $residence=new Residence();
-        return view('residences.create',[
-            'residence'=>$residence
-        ]);
+        //
     }
 
     /**
@@ -40,12 +42,9 @@ class ResidenceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ResidenceRequest $request)
+    public function store(Request $request)
     {
-        $residence=new Residence();
-        $data=$request->validated();
-        $residence->fill($data)->save();
-        return response()->redirectToRoute('residence.index');
+        //
     }
 
     /**
@@ -56,7 +55,7 @@ class ResidenceController extends Controller
      */
     public function show($id)
     {
-        return view('residences.show');
+        //
     }
 
     /**
@@ -65,11 +64,9 @@ class ResidenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Residence $residence)
+    public function edit($id)
     {
-        return view('residences.edit',[
-            'residence'=>$residence
-        ]);
+        //
     }
 
     /**
@@ -79,11 +76,9 @@ class ResidenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ResidenceRequest $request,Residence $residence)
+    public function update(Request $request, $id)
     {
-        $residence->update($request->validated());
-        $residence->save();
-        return response()->redirectToRoute('residence.index');
+        //
     }
 
     /**
@@ -92,9 +87,15 @@ class ResidenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Residence $residence)
+    public function destroy($id)
     {
-        $residence->delete();
-        return redirect()->route('residence.index');
+        //
+    }
+    public function resultat()
+    {
+        $clients = Client::with(["personne","commune","residence"])->get();
+        return view('recherche.resultat',[
+            'clients'=>$clients
+        ]);
     }
 }

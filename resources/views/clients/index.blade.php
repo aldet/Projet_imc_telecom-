@@ -45,13 +45,13 @@
                                               <a href="{{ route('client.show',$client->id) }}"><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
                                           </td>
                                           <td>
-                                              <a href="{{ route('client.edit',$client->id) }}"><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
+                                              <a href="{{ route('client.edit',$client->id) }}"><button type="button" class="btn btn-warning delete-client-button"><i class="fas fa-edit"></i></button></a>
                                           </td>
                                           <td>
                                               <form method="POST" action="{{route('client.destroy',$client->id)}}">
                                                   @csrf
                                                   @method('DELETE')
-                                                  <button rel="tooltip" type="submit" class="btn btn-danger "><i class="fas fa-user-slash"></i></button>
+                                                  <button rel="tooltip" type="button" class="btn btn-danger delete-client-button"><i class="fas fa-user-slash"></i></button>
                                               </form>
                                           </td>
                                       </tr>
@@ -64,3 +64,14 @@
             </div>
         </div>
 @endsection
+@push('js')
+    <script>
+        $(document).ready(function(){
+            $('.delete-client-button').click(function(){
+                if (confirm('voulez-vous supprimer ce client ?')){
+                    $(this).closest('form').submit()
+                }
+            });
+        });
+    </script>
+@endpush

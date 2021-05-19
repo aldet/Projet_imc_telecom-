@@ -52,7 +52,7 @@
                                         <form method="POST" action="{{route('technicien.destroy',$technicien->id)}}">
                                             @csrf
                                             @method('DELETE')
-                                            <button rel="tooltip" type="submit" class="btn btn-danger "><i class="fas fa-user-slash"></i></button>
+                                            <button rel="tooltip" type="button" class="btn btn-danger delete-technicien-button"><i class="fas fa-user-slash"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -65,3 +65,15 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function () {
+            $('.delete-technicien-button').click(function(){
+                if (confirm('Voulez-vous supprimer ce technicien?')){
+                    $(this).closest('form').submit()
+                }
+            });
+        });
+    </script>
+@endpush

@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('competence.create') }}" class="btn btn-primary btn-round text-white pull-right">Ajouter un client</a>
+                    <a href="{{ route('competence.create') }}" class="btn btn-primary btn-round text-white pull-right">Ajouter une competence</a>
                     <h5 class="title">{{__("Liste des competences")}}</h5>
                     <div class="col-12 mt-2"></div>
                 </div>
@@ -34,16 +34,16 @@
                                 <td>{{$competence->label}}</td>
                                 <td>{{ $competence->description }}</td>
                                 <td>
-                                    <a href="{{ route('competence.show',$competence->id) }}"><button type="button" class="btn btn-info">voir</button></a>
+                                    <a href="{{ route('competence.show',$competence->id) }}"><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('competence.edit',$competence->id) }}"><button type="button" class="btn btn-warning">Modifier</button></a>
+                                    <a href="{{ route('competence.edit',$competence->id) }}"><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
                                 </td>
                                 <td>
                                     <form method="POST" action="{{route('competence.destroy',$competence->id)}}">
                                         @csrf
                                         @method('DELETE')
-                                        <button rel="tooltip" type="submit" class="btn btn-danger ">Supprimer</button>
+                                        <button rel="tooltip" type="submit" class="btn btn-danger "><i class="fas fa-user-slash"></i></button>
                                     </form>
                                 </td>
                             </tr>
