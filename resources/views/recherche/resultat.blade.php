@@ -11,7 +11,6 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route('client.create') }}" class="btn btn-primary btn-round text-white pull-right">Ajouter un client</a>
                         <h5 class="title">{{__("Liste des clients")}}</h5>
                         <div class="col-12 mt-2"></div>
                     </div>

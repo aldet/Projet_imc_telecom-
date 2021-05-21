@@ -15,7 +15,10 @@ class MotifController extends Controller
      */
     public function index()
     {
-        //
+        $motifs=Motif::all();
+        return view('motifs.index',[
+            'motifs'=>$motifs
+        ]);
     }
 
     /**
@@ -49,9 +52,11 @@ class MotifController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Motif $motif)
     {
-        //
+        return view('motifs.show',[
+            'motif'=>$motif
+        ]);
     }
 
     /**
@@ -60,9 +65,11 @@ class MotifController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Motif $motif)
     {
-        //
+         return view('motifs.edit',[
+             'motif'=>$motif
+         ]);
     }
 
     /**
@@ -72,9 +79,11 @@ class MotifController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MotifRequest $request,Motif $motif)
     {
-        //
+        $motif->update($request->validated());
+        $motif->save();
+        return response()->redirectToRoute('motif.index');
     }
 
     /**
@@ -83,8 +92,10 @@ class MotifController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Motif $motif)
     {
-        //
+
+        $motif->delete();
+        return redirect()->route('motif.index');
     }
 }

@@ -24,6 +24,7 @@ Auth::routes();
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/resultat', 'App\Http\Controllers\RechercheController@resultat')->name('resultat');
+Route::get('/rechercheclient', 'App\Http\Controllers\RechercheController@rechercheclient')->name('rechercheclient');
 Route::resource('client','App\http\Controllers\ClientController');
 Route::resource('motif','App\http\Controllers\MotifController');
 Route::resource('technicien','App\http\Controllers\TechnicienController');

@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     use HasFactory;
-    protected $fillable=['matricule','commune_id','nam_commune','residence_id','label'];
+    protected $fillable=['matricule','commune_id','nam_commune','residence_id','label','motif_id','motif'];
 
     public function personne()
     {
@@ -27,5 +27,10 @@ class Client extends Model
     public function residence()
     {
         return $this->belongsTo(Residence::class);
+    }
+
+    public function motif()
+    {
+        return $this->belongsTo(Motif::class);
     }
 }

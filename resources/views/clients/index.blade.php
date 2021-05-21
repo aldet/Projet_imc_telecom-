@@ -26,6 +26,7 @@
                                       <th scope="col">Email</th>
                                       <th scope="col">commune</th>
                                       <th scope="col">Typ residence</th>
+                                      <th scope="col">Motif</th>
                                       <th scope="col">Voir</th>
                                       <th scope="col">Modifier</th>
                                       <th scope="col">Supprimer</th>
@@ -41,11 +42,12 @@
                                           <td> {{ $client->personne->email }}</td>
                                           <td> {{ $client->commune ? $client->commune->name_commune : "" }}</td>
                                           <td>{{$client->residence ? $client->residence->label : ""}}</td>
+                                          <td>{{$client->motif ? $client->motif->motif : ""}}</td>
                                           <td>
                                               <a href="{{ route('client.show',$client->id) }}"><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
                                           </td>
                                           <td>
-                                              <a href="{{ route('client.edit',$client->id) }}"><button type="button" class="btn btn-warning delete-client-button"><i class="fas fa-edit"></i></button></a>
+                                              <a href="{{ route('client.edit',$client->id) }}"><button type="button" class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
                                           </td>
                                           <td>
                                               <form method="POST" action="{{route('client.destroy',$client->id)}}">

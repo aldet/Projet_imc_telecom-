@@ -12,7 +12,14 @@
   </div>
   <div class="sidebar-wrapper" id="sidebar-wrapper">
     <ul class="nav">
-      <li class="@if ($activePage == 'home') active @endif">
+        <li class="@if ($activePage == 'home') active @endif">
+            <a href="#" id="open_search_panel">
+                <i class="now-ui-icons design_app"></i>
+                <p>{{ __('Recherche') }}</p>
+            </a>
+        </li>
+
+        <li class="@if ($activePage == 'home') active @endif">
         <a href="{{ route('home') }}">
           <i class="now-ui-icons design_app"></i>
           <p>{{ __('Dashboard') }}</p>
@@ -80,4 +87,5 @@
       </li>
     </ul>
   </div>
+  <div id="search_panel">qmldsfjmqsldfkj</div>
 </div>

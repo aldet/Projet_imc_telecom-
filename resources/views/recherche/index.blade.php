@@ -1,11 +1,3 @@
-@extends('layouts.app', [
-    'namePage' => 'Register page',
-    'activePage' => 'register',
-    'backgroundImage' => asset('assets') . "/img/bg16.jpg",
-])
-@section('content')
-    <div class="panel-header panel-header-sm">
-    </div>
     <div class="content">
         <div class="row">
             <div class="col-md-12">
@@ -14,9 +6,11 @@
                         <p>Recherche</p>
                     </div>
                     <div class="card-body" id="overflowTest" >
-                        <form>
-                            <input class="form-control" type="search" placeholder="nom client, matricule, telephone" aria-label="Search">
-                        <div class="dropdown">
+                        <form method="GET" action="{{route('rechercheclient')}}">
+                            @csrf
+                            @method('GET')
+                            <input class="form-control" type="text" name="q" placeholder="nom client, matricule, telephone" aria-label="Search">
+                        <div class="form-group dropdown">
                             <button class="btn col-md-12 dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                Marchés
                             </button>
@@ -25,7 +19,7 @@
                                 <li><input type="checkbox" class="form-control-checkbox"></li>
                             </ul>
                         </div>
-                        <div class="dropdown">
+                        <div class="form-group dropdown">
                             <button class="btn  dropdown-toggle col-md-12 " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Commune
                             </button>
@@ -36,7 +30,7 @@
                                 @endforeach
                             </ul>
                         </div>
-                            <div class="dropdown">
+                            <div class="form-group dropdown">
                                 <button class="btn  dropdown-toggle col-md-12" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Type de client
                                 </button>
@@ -47,7 +41,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        <div class="dropdown">
+                        <div class="form-group dropdown">
                             <button class="btn  dropdown-toggle col-md-12 " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Adresse client
                             </button>
@@ -56,7 +50,7 @@
                                 <li><input type="checkbox" class="form-control-checkbox"></li>
                             </ul>
                         </div>
-                        <div class="dropdown">
+                        <div class="form-group dropdown">
                             <button class="btn dropdown-toggle col-md-12" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Statut d'intervention
                             </button>
@@ -65,7 +59,7 @@
                                 <li><input type="checkbox" class="form-control-checkbox"></li>
                             </ul>
                         </div>
-                        <div class="dropdown">
+                        <div class="form-group dropdown">
                             <button class="btn dropdown-toggle col-md-12" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Nécessité de RDV
                             </button>
@@ -74,7 +68,7 @@
                                 <li><input type="checkbox" class="form-control-checkbox"></li>
                             </ul>
                         </div>
-                        <div class="dropdown">
+                        <div class="form-group dropdown">
                             <button class="btn dropdown-toggle col-md-12" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Technicien en charge
                             </button>
@@ -86,7 +80,7 @@
 
                             </ul>
                         </div>
-                            <div class="dropdown">
+                            <div class="form-group dropdown">
                                 <button class="btn dropdown-toggle col-md-12" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Motif contact infructueux
                                 </button>
@@ -95,8 +89,8 @@
                                     <li><input type="checkbox" class="form-control-checkbox"></li>
                                 </ul>
                             </div>
-                           <div class="card-footer" id="button-footer">
-                                <a><button type="button" class="btn"><i class="fas fa-trash-alt"></i></button></a>
+                           <div class="card-footer mr-0" id="button-footer">
+                                <a href="{{route('home')}}"><button type="button" class="btn btn-warning"><i class="fas fa-trash-alt"></i></button></a>
                                 <button type="submit" class="btn btn-info">Appliquer</button>
                           </div>
                     </form>
@@ -105,12 +99,10 @@
             </div>
         </div>
     </div>
- @endsection
 <style>
     #overflowTest
     {
         overflow: scroll;
-        width: 25%;
         background-color: #0c2646;
     }
 </style>

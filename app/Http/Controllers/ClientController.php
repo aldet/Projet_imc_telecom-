@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use App\Models\Personne;
+use App\Models\Motif;
 use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
@@ -37,11 +38,14 @@ class ClientController extends Controller
     {   $client=new Client();
         $client->personne=new Personne();
         $communes=Commune::all(['id','name_commune']);
+        $motifs=Motif::all(['id','motif']);
         $residences=Residence::all(['id','label']);
+
         return view('clients.create',[
             'client'=>$client,
             'communes'=>$communes,
-            'residences'=>$residences
+            'residences'=>$residences,
+            'motifs'=>$motifs
         ]);
     }
 
@@ -90,10 +94,12 @@ class ClientController extends Controller
     {
         $communes=Commune::all(['id','name_commune']);
         $residences=Residence::all(['id','label']);
+        $motifs=Motif::all(['id','motif']);
         return view('clients.edit',[
             'client'=>$client,
             'communes'=>$communes,
-            'residences'=>$residences
+            'residences'=>$residences,
+            'motifs'=>$motifs
         ]);
     }
 
@@ -122,6 +128,10 @@ class ClientController extends Controller
     {
         $client->delete();
         return redirect()->route('client.index');
+
+    }
+    public function recherche()
+    {
 
     }
 }

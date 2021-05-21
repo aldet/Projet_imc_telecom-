@@ -78,3 +78,13 @@
         </select>
     </div>
 </div>
+<div class="form-group">
+    <label class="form-control-label" for="form_residence_id">{{__('Type residence')}}</label>
+    <div class="select">
+        <select name="client[motif_id]" class="form-control">
+            @foreach($motifs as $motif)
+                <option value="{{$motif->id}}">{{$motif->motif}}</option>
+            @endforeach
+        </select>
+    </div>
+</div>

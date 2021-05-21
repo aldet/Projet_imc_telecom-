@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Motif extends Model
 {
     use HasFactory;
+    protected $fillable=['motif'];
+
+    public function client()
+    {
+        return $this->hasMany(Client::class);
+    }
 }
