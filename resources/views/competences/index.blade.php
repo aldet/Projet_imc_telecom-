@@ -43,7 +43,7 @@
                                     <form method="POST" action="{{route('competence.destroy',$competence->id)}}">
                                         @csrf
                                         @method('DELETE')
-                                        <button rel="tooltip" type="submit" class="btn btn-danger "><i class="fas fa-user-slash"></i></button>
+                                        <button rel="tooltip" type="button" class="btn btn-danger delete-competence-button"><i class="fas fa-user-slash"></i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -56,3 +56,14 @@
     </div>
 </div>
 @endsection
+@push('js')
+    <script>
+        $(document).ready(function(){
+            $('.delete-competence-button').click(function(){
+                if (confirm('voulez-vous supprimer cette competence ?')){
+                    $(this).closest('form').submit()
+                }
+            });
+        });
+    </script>
+@endpush

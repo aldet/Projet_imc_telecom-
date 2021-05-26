@@ -26,12 +26,14 @@ Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/resultat', 'App\Http\Controllers\RechercheController@resultat')->name('resultat');
 Route::get('/rechercheclient', 'App\Http\Controllers\RechercheController@rechercheclient')->name('rechercheclient');
 Route::resource('client','App\http\Controllers\ClientController');
+Route::resource('marche','App\Http\Controllers\MarcheController');
 Route::resource('motif','App\http\Controllers\MotifController');
 Route::resource('technicien','App\http\Controllers\TechnicienController');
 Route::resource('competence','App\http\Controllers\CompetenceController');
 Route::resource('commune','App\Http\Controllers\CommuneController');
 Route::resource('residence','App\Http\Controllers\ResidenceController');
 Route::resource('recherche','App\Http\Controllers\RechercheController');
+Route::resource('statut','App\Http\Controllers\StatutController');
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);

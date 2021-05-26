@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\Client;
 use App\Models\Personne;
 use App\Models\Motif;
+use App\Models\Statut;
 use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
@@ -23,7 +24,7 @@ class ClientController extends Controller
     public function index()
     {
         /** @var Client[] $clients */
-        $clients = Client::with(["personne","commune","residence"])->get();
+        $clients = Client::with(["personne","commune","residence","statut"])->get();
         //dd($clients);
         return view('clients.index',
             ['clients' => $clients]);
@@ -39,13 +40,16 @@ class ClientController extends Controller
         $client->personne=new Personne();
         $communes=Commune::all(['id','name_commune']);
         $motifs=Motif::all(['id','motif']);
+        $statuts=Statut::all(['id','name_statut']);
         $residences=Residence::all(['id','label']);
-
+        $oldInput=session()->getOldInput();
+        $client->fill($oldInput);
         return view('clients.create',[
             'client'=>$client,
             'communes'=>$communes,
             'residences'=>$residences,
-            'motifs'=>$motifs
+            'motifs'=>$motifs,
+            'statuts'=>$statuts
         ]);
     }
 
@@ -69,7 +73,7 @@ class ClientController extends Controller
         }
         catch (\Throwable $e) {
             DB::rollBack();
-            return redirect()->route('client.create');
+            return redirect()->route('client.create')->with('databaseError', $e->getMessage());
         }
     }
 
@@ -95,11 +99,13 @@ class ClientController extends Controller
         $communes=Commune::all(['id','name_commune']);
         $residences=Residence::all(['id','label']);
         $motifs=Motif::all(['id','motif']);
+        $statuts=Statut::all(['id','name_statut']);
         return view('clients.edit',[
             'client'=>$client,
             'communes'=>$communes,
             'residences'=>$residences,
-            'motifs'=>$motifs
+            'motifs'=>$motifs,
+            'statuts'=>$statuts
         ]);
     }
 

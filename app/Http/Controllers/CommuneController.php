@@ -99,4 +99,13 @@ class CommuneController extends Controller
         $commune->delete();
         return redirect()->route('commune.index');
     }
+/*
+    public function rechercheCommune()
+    {
+        $p=request()->input('p');
+        $communes=Commune::where('name_commune','like', "%$p%")->get();
+        dd($communes);
+        return view('recherche.resultat')->with('communes',$communes);
+    }
+*/
 }

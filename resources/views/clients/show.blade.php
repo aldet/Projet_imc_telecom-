@@ -12,11 +12,12 @@
                 <div class="alert alert-dark text-black-50" role="alert">
                     <h6 class="alert-heading text-uppercase">{{$client->personne->name}} {{$client->personne->prenom}}</h6>
                     <p>{{$client->residence ? $client->residence->label : ""}}</p>
-                    <p><i class="fas fa-mobile-alt"></i> {{$client->personne->telephone}}</p>
+                    <p><i class="fas fa-mobile-alt"></i>{{$client->personne->telephone}}</p>
                 </div>
                 <div class="alert alert-info"  role="alert">
                    <div>
                        <div class="title">statut d'intervention</div>
+                       <p>{{$client->statut ? $client->statut->name_statut : ""}}</p>
                        <hr>
                        <p>Date:</p>
                        <p>Technicien:</p>
@@ -57,8 +58,8 @@
                 </div>
                <div>
                    <a href="#"><button type="button"  class="btn btn-info">Planifier intervention</button></a>
-                   <a href="#"><button type="button" class="btn  btn-outline-warning">Replanifier intervention</button></a>
-                   <a href="#"><button type="button" class="btn btn-outline-danger">Annuler intervention</button></a>
+                   <a href="#"><button type="button" class="btn  btn-warning">Replanifier intervention</button></a>
+                   <a href="#"><button type="button" class="btn btn-danger">Annuler intervention</button></a>
                </div>
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Consigne</label>

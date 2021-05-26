@@ -10,6 +10,7 @@ $(document).ready(function () {
                url: "/recherche",
                success: function(response) {
                    searchPanel.html(response);
+                   searchPanel.find('select').selectpicker();
                }
            })
         }

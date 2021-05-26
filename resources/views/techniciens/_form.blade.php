@@ -60,9 +60,10 @@
         <input type="text" name="personne[telephone]" id="form_telephone_technicien" required class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" placeholder="{{ __('telephone') }}" value="{{ old('personne.telephone', $technicien->personne->telephone) }}">
         @include('alerts.feedback', ['field' => 'personne.telephone'])
     </div>
+
     <div class="form-group col-md-6 {{$errors->has('personne.telephone_fixe') ? 'has-danger': ''}}">
         <label class="form-control-label" for="form_telephone_fixe_technicien">{{ __('Telephone fixe') }}</label>
-        <input type="text" name="personne[telephone_fixe]" id="form_telephone_fixe_client" required class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" placeholder="{{ __('telephone fixe') }}" value="{{ old('personne.telephone_fixe', $technicien->personne->telephone_fixe) }}">
+        <input type="text" name="personne[telephone_fixe]" id="form_telephone_fixe_client" required class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" placeholder="{{ __('telephone fixe') }}" value="{{ old('personne.telephone_fixe',$technicien->personne->telephone_fixe)}}">
         @include('alerts.feedback', ['field' => 'personne.telephone_fixe'])
     </div>
 </div>
