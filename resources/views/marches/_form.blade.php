@@ -8,3 +8,4 @@
     <input type="text" name="label_marche" id="form_label_marche" required class="form-control {{$errors->has('label_marche') ? 'is-invalide':''}}" placeholder="{{__('nom marche')}}" value="{{$marche->label_marche}}">
     @include('alerts.feedback',['field'=>'label_marche'])
 </div>
+

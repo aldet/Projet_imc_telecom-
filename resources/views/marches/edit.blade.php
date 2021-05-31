@@ -13,14 +13,14 @@
                     <div class="card-header">
                         <h5 class="title p-5">Modifier marché</h5>
                     </div>
-                    <form method="POST" action="{{route('client.update', $client)}}">
+                    <form method="POST" action="{{route('marche.update', $marche)}}">
                         @csrf
                         @method("PUT")
                         <div class="card-body">
-                            @include('clients._form',['action'=>route('client.store'),'method'=>'POST'])
+                            @include('marches._form',['action'=>route('marche.store'),'method'=>'POST'])
                         </div>
                         <div class="card-footer text-center">
-                            <a href="{{ route('client.show',$client) }}" class="btn btn-default btn-round mr-4">{{__('Cancel')}}</a>
+                            <a href="{{ route('marche.show',$marche) }}" class="btn btn-default btn-round mr-4">{{__('Cancel')}}</a>
                             <button type="submit" class="btn btn-primary btn-round">{{__('Save')}}</button>
                         </div>
                     </form>

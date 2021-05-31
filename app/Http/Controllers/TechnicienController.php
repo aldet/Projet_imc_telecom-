@@ -55,17 +55,29 @@ class TechnicienController extends Controller
         $data = $request->validated();
         $path=$request->file('photo')->store('photos_techniciens');
         $data["technicien"]["photo"]=$path;
-//         dd($request->post(), $data);
+         //dd($request->post(), $data);
         try {
             DB::beginTransaction();
             $technicien->fill($data['technicien'])->save();
-            $technicien->personne()->create($data['personne']);
+            // On ne peut pas faire $technicien->personne()->create($data['personne']);
+            // car il y a un champ 'name_dieuveil' qu'il ne connait pas
+            // Il ne sait pas comment traiter 'name_dieuveil'
+            // ce que nous voulons c'est que 'name_dieuveil' soit affecté au champ 'name' de Personne
+            // sinon le champ 'name' de Personne sera vide et on risque d'avoir l'erreur: "SQLSTATE[HY000]: General error: 1364 Field 'name' doesn't have a default value
+            // donc on va devoir faire ça manuellement.
+            // c'est pour éviter ce travail manuel que souvent on donne au champ du formulaire le même attribut 'name' que ce qu'il y a dans la base de données
+
+            $personne = $technicien->personne()->make($data['personne']);
+            $personne->name = $data['personne']['name_dieuveil']; // on fait le mapping manuel du champ 'name_dieuveil' vers 'name'
+            // après on fait la sauvegarde
+            $personne->save();
             $technicien->competences()->sync($data['id_des_competences_du_technicien']);
             DB::commit();
             return response()->redirectToRoute('technicien.index');
         }
         catch (\Throwable $e) {
             DB::rollBack();
+            dd($e->getMessage());
             return redirect()->route('technicien.create');
         }
 

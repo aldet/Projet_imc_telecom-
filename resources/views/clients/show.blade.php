@@ -26,7 +26,8 @@
                 <div class="overflow-scroll">
                     <div class="alert alert-dark text-black-50 overflow-hidden" role="alert">
                        <div id="marche">
-                           <div class="text-secondary">Marché / Commande</div>
+                           <div class="text-secondary">Marché/Commande</div>
+                           <p>{{$client->commune->marche ? $client->commune->marche->code_marche : ""}}</p>
                        </div>
                         <div id="adresse">
                             <div class="text-secondary"><i class="fas fa-map-marker-alt"></i> Adresse client</div>
@@ -45,8 +46,8 @@
                                 <p>{{$client->personne->email}}</p>
                             </div>
                             <div id="commune" class="p-0">
-                                <p class="text-secondary p-0">Commune</p>
-                                <p class="p-0">{{$client->commune ? $client->commune->name_commune : ""}}
+                                <p class="text-secondary">Commune</p>
+                                <p>{{$client->commune ? $client->commune->name_commune : ""}}
                             </div>
                         </div>
                     </div>

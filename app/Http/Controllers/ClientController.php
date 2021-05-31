@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientRequest;
 use App\Models\Commune;
+use App\Models\Marche;
 use App\Models\Residence;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -36,21 +37,19 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   $client=new Client();
+
+    {
+        $client=new Client();
         $client->personne=new Personne();
         $communes=Commune::all(['id','name_commune']);
+        $marches=Marche::all(['id','code_marche']);
         $motifs=Motif::all(['id','motif']);
         $statuts=Statut::all(['id','name_statut']);
         $residences=Residence::all(['id','label']);
-        $oldInput=session()->getOldInput();
-        $client->fill($oldInput);
-        return view('clients.create',[
-            'client'=>$client,
-            'communes'=>$communes,
-            'residences'=>$residences,
-            'motifs'=>$motifs,
-            'statuts'=>$statuts
-        ]);
+        //$oldInput=session()->getOldInput();
+        //$client->fill($oldInput);
+        return view('clients.create',compact('client','marches','communes','motifs','statuts','residences','marches'));
+
     }
 
     /**
@@ -100,12 +99,14 @@ class ClientController extends Controller
         $residences=Residence::all(['id','label']);
         $motifs=Motif::all(['id','motif']);
         $statuts=Statut::all(['id','name_statut']);
+        $marches=Marche::all(['id','code_marche']);
         return view('clients.edit',[
             'client'=>$client,
             'communes'=>$communes,
             'residences'=>$residences,
             'motifs'=>$motifs,
-            'statuts'=>$statuts
+            'statuts'=>$statuts,
+            'marches'=>$marches
         ]);
     }
 

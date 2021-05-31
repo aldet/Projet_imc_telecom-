@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     use HasFactory;
-    protected $fillable=['matricule','commune_id','nam_commune','residence_id','label','motif_id','motif','statut_id','name_statut'];
+    protected $fillable=['matricule','commune_id','name_commune','residence_id','label','motif_id','motif','statut_id','name_statut','code_marche'];
 
     public function personne()
     {

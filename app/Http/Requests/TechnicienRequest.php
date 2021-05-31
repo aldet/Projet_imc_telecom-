@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use phpDocumentor\Reflection\Types\Nullable;
+
 class TechnicienRequest extends FormRequest
 {
     /**
@@ -26,7 +28,7 @@ class TechnicienRequest extends FormRequest
 
         return [
             'technicien.matricule'=>['required','min:2','max:50'],
-            'photo'=>'image|max:5000',
+            'photo'=>['nullable','image','max:5000'],
             'personne.name_dieuveil'=>'required',
             'personne.prenom'=>'required',
             'personne.email'=>'required',

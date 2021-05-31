@@ -7,6 +7,9 @@ use App\Models\Residence;
 use App\Models\Commune;
 use App\Models\Technicien;
 use App\Models\Client;
+use App\Models\Marche;
+use App\Models\Motif;
+use App\Models\Statut;
 use App\Models\Personne;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\App;
@@ -21,16 +24,16 @@ class RechercheController extends Controller
      */
     public function index()
     {   $residences=Residence::all('id','label');
+        $marches=Marche::all('id','code_marche');
+        $motifs=Motif::all('id','motif');
         $communes=Commune::all('id','name_commune');
+        $statuts=Statut::all('id','name_statut');
         $clients=Client::with(["personne"])->get();
         $techniciens=Technicien::with(["personne","competences"])->get();
         //$techniciens->personne=Personne::all('id');
-        return view('recherche.index',[
-            'residences'=>$residences,
-            'communes'=>$communes,
-            'clients'=>$clients,
-            'techniciens'=>$techniciens
-        ]);
+        return view('recherche.index',compact('motifs','communes','statuts','clients',
+            'techniciens','residences','marches'));
+
     }
 
     public function resultat()

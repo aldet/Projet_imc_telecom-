@@ -25,6 +25,8 @@ class CommuneRequest extends FormRequest
     {
         return [
             'name_commune'=>'required',
+            'marche_id'=>'required'
+
         ];
     }
 }

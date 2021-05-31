@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\CommuneRequest;
 use App\Models\Competence;
+use App\Models\Marche;
 use Illuminate\Http\Request;
 use App\Models\Commune;
 use App\Models\Client;
@@ -16,7 +17,7 @@ class CommuneController extends Controller
     public function index()
     {
         /** @var commune[] $communes*/
-        $communes=Commune::all();
+        $communes=Commune::with(["marche"])->get();
         return view('communes.index',['communes'=>$communes]);
     }
 
@@ -28,8 +29,10 @@ class CommuneController extends Controller
     public function create()
     {
         $commune=new Commune();
+        $marches=Marche::all(['id','code_marche']);
         return view('communes.create',[
-            'commune'=>$commune
+            'commune'=>$commune,
+            'marches'=>$marches
         ]);
     }
 
@@ -42,7 +45,9 @@ class CommuneController extends Controller
     public function store(CommuneRequest $request)
     {
         $commune=new Commune();
-        $commune->fill($request->validated())->save();
+        $data=$request->validated();
+        //dd($data);
+        $commune->fill($data)->save();
         return response()->redirectToRoute('commune.index');
     }
 
@@ -67,10 +72,12 @@ class CommuneController extends Controller
      */
     public function edit(Commune $commune)
     {
+        $marches=Marche::all(['id','code_marche']);
         $oldInput=session()->getOldInput();
         $commune->fill($oldInput);
         return view('communes.edit',[
-            'commune'=>$commune
+            'commune'=>$commune,
+            'marches'=>$marches
         ]);
     }
 
@@ -81,7 +88,7 @@ class CommuneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CommuneRequest $request,Commune $commune,$id)
+    public function update(CommuneRequest $request,Commune $commune)
     {
         $commune->update($request->validated());
         $commune->save();

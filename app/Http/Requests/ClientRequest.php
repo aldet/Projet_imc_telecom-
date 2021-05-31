@@ -27,9 +27,12 @@ class ClientRequest extends FormRequest
     public function rules()
     {
         /** @var Client $client */
-        $client = $this->route()->parameter('client');
+        $client = $this->route()->parameter('client',
+        );
         return [
-            'client.matricule' =>['required','min:2','max:50'],
+            'client.matricule' =>['required','min:2','max:50'
+                // Rule::unique('clients','matricule')->ignore($client->id)
+                ],
             'personne.name' => 'required',
             'personne.prenom' => 'required',
             'personne.email' => [
