@@ -68,6 +68,20 @@
                     <div class="mt-2"><i class="far fa-save"></i> <i class="far fa-window-close"></i></div>
                 </div>
             </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <iframe
+                            width="100%"
+                            height="600"
+                            style="border:2px"
+                            loading="lazy"
+                            allowfullscreen
+                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAZ0rOxuNI37CBNqCLgkM4JXUHYSgOEpWg&q={{urlencode($client->personne->adresse)}}">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

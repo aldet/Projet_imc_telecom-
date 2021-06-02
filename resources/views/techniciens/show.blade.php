@@ -71,7 +71,9 @@
                     <div class="card-body">
                         <div class="author">
                             <a href="#">
-                                <img class="avatar border-gray" src="{{asset('assets')}}/img/default-avatar.png" alt="...">
+                                @if($technicien->photo)
+                                    <img class="avatar border-gray" src="{{asset('storage/' .$technicien->photo)}}" alt="...">
+                                @endif
                                 <h5 class="title">{{ $technicien->personne->name }}</h5>
                             </a>
                             <p class="description">
@@ -103,6 +105,20 @@
                 <div class="card">
                     <div class="card-header">
                         <h5 class="title">3.Competence</h5>
+                        <hr>
+                    </div>
+                    <div class="text-secondary ml-3">
+                       <h5>Titre</h5>
+                        @foreach ($technicien->competences as $competence)
+                           <p>{{$competence->label}}</p>
+                        @endforeach
+                    </div>
+                    <hr>
+                    <div class="text-secondary ml-3">
+                        <h5>Description</h5>
+                        @foreach ($technicien->competences as $competence)
+                            <p>{{$competence->description}}</p>
+                        @endforeach
                     </div>
                 </div>
             </div>

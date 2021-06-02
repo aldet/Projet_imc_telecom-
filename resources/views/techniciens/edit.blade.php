@@ -14,7 +14,7 @@
                     <div class="card-header">
                         <h5 class="title p-5">Modifier technicien</h5>
                     </div>
-                    <form method="post" action="{{route('technicien.update', $technicien)}}">
+                    <form method="post" enctype="multipart/form-data" action="{{route('technicien.update', $technicien)}}">
                         @csrf
                         @method('PUT')
                         <div class="card-body">

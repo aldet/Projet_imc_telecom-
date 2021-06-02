@@ -53,8 +53,11 @@ class TechnicienController extends Controller
     {
         $technicien = new Technicien();
         $data = $request->validated();
-        $path=$request->file('photo')->store('photos_techniciens');
-        $data["technicien"]["photo"]=$path;
+        if ($request->hasFile('photo'))
+        {
+            $path=$request->file('photo')->store('photos_techniciens','public');
+            $data["technicien"]["photo"]=$path;
+        }
          //dd($request->post(), $data);
         try {
             DB::beginTransaction();
@@ -121,9 +124,31 @@ class TechnicienController extends Controller
     public function update(TechnicienRequest $request,Technicien $technicien)
     {
         $data=$request->validated();
+        // On ne peut pas faire $technicien->personne()->create($data['personne']);
+        // car il y a un champ 'name_dieuveil' qu'il ne connait pas
+        // Il ne sait pas comment traiter 'name_dieuveil'
+        // ce que nous voulons c'est que 'name_dieuveil' soit affecté au champ 'name' de Personne
+        $personne = $technicien->personne;
+        $personne->name = $data['personne']['name_dieuveil']; // on fait le mapping manuel du champ 'name_dieuveil' vers 'name'
+        $personne->fill($data['personne']);
+        // après on fait la sauvegarde
+        $personne->save();
+
+        //update image
+        if ($request->hasFile('photo'))
+        {
+            $path=$request->file('photo')->store('photos_techniciens','public');
+            $data["technicien"]["photo"]=$path;
+        }
+
         $technicien->fill($data['technicien'])->save();
-        $technicien->personne()->update($data['personne']);
-        response()->redirectToRoute('technicien.index');
+        //$competences= $data['id_des_competences_du_technicien']??[]; // forme contractée on a utilisé ?? opérateur Null coalescent
+        $competences= isset($data['id_des_competences_du_technicien']) ? $data['id_des_competences_du_technicien'] : [];
+        unset($data['competences']);
+        $technicien->competences()->sync($competences);
+
+        //$technicien->personne()->update($data['personne']);
+        return response()->redirectToRoute('technicien.index');
 
     }
 

@@ -42,7 +42,7 @@
                                         <form method="POST" action="{{route('motif.destroy',$motif->id)}}">
                                             @csrf
                                             @method('DELETE')
-                                            <button rel="tooltip" type="submit" class="btn btn-danger "><i class="fas fa-user-slash"></i></button>
+                                            <button rel="tooltip" type="submit" class="btn btn-danger delete-motif-button"><i class="fas fa-user-slash"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -55,3 +55,14 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script>
+        $(document).ready(function (){
+            $('.delete-motif-button').click(function (){
+                if (confirm('voulez-vous supprimer ce march?')){
+                    $(this).closest('form').submit()
+                }
+            });
+        });
+    </script>
+@endpush

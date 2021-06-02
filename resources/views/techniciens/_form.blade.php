@@ -11,7 +11,7 @@
 <div class="form-row">
    <div class="form-group col-md-6 {{$errors->has('personne.name') ? 'has-danger' : ''}}">
        <label class="form-control-label" for="form_name_technicien" >{{__('Nom')}}</label>
-       <input type="text" name="personne[name_dieuveil]" id="form_name_technicien" required class="form-control {{$errors->has('name') ? 'is-invalid':''}}" placeholder="{{__('nom')}}" value="{{ old('personne.name', $technicien->personne->name) }}">
+       <input type="text" name="personne[name_dieuveil]" id="form_name_technicien" required class="form-control {{$errors->has('name') ? 'is-invalid':''}}" placeholder="{{__('nom')}}" value="{{ old('personne.name_dieuveil', $technicien->personne->name) }}">
        @include('alerts.feedback',['field'=>'personne.name'])
    </div>
     <div class="form-group  col-md-6 {{$errors->has('personne.prenom') ? 'has-danger': ''}}">
@@ -22,7 +22,7 @@
 </div>
 <div class="form-group {{$errors->has('email') ? 'has-danger': ''}}">
     <label class="form-control-label" for="form_email_technicien">{{ __('Email') }}</label>
-    <input type="email" name="personne[email]" id="form_prenom_client" required class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('email') }}" value="{{  $technicien->personne->email}}">
+    <input type="email" name="personne[email]" id="form_prenom_client" required class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('email') }}" value="{{  old('personne.email',$technicien->personne->email) }}">
     @include('alerts.feedback', ['field' => 'email'])
 </div>
 <div class="form-row">
@@ -33,7 +33,7 @@
     </div>
     <div class="mb-3 col-md-6 {{$errors->has('photo') ? 'has-danger':''}}">
         <label for="form_photo_technicien" class="form-control-label">{{ __('Photo') }}</label>
-        <input  type="file" name="photo" id="form_photo_technicien" required class="form-control {{$errors->has('photo') ? 'is-invalid':''}}" >
+        <input  type="file" name="photo" id="form_photo_technicien"  class="form-control {{$errors->has('photo') ? 'is-invalid':''}}" >
         @include('alerts.feedback',['field'=>'photo'])
     </div>
 </div>

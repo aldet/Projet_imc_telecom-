@@ -43,7 +43,7 @@
                                         <form method="POST" action="{{route('marche.destroy',$marche->id)}}">
                                             @csrf
                                             @method('DELETE')
-                                            <button rel="tooltip" type="submit" class="btn btn-danger delete-marche-button"><i class="fas fa-user-slash"></i></button>
+                                            <button rel="tooltip" type="button" class="btn btn-danger delete-marche-button delete-marche-button"><i class="fas fa-user-slash"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -56,3 +56,14 @@
         </div>
     </div>
 @endsection
+@push('js')
+    <script>
+        $(document).ready(function (){
+            $('.delete-marche-button').click(function (){
+                if (confirm('voulez-vous supprimer ce march?')){
+                    $(this).closest('form').submit()
+                }
+            });
+        });
+    </script>
+@endpush
