@@ -64,4 +64,8 @@ class User extends Authenticatable
     {
         return $this->roles()->where('name','technicien')->first();
     }
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class);
+    }
 }

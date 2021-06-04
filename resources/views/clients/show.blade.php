@@ -62,11 +62,19 @@
                    <a href="#"><button type="button" class="btn  btn-warning">Replanifier intervention</button></a>
                    <a href="#"><button type="button" class="btn btn-danger">Annuler intervention</button></a>
                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Consigne</label>
-                    <textarea class="form-control border-primary rounded" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    <div class="mt-2"><i class="far fa-save"></i> <i class="far fa-window-close"></i></div>
-                </div>
+                <form method="post" action="{{route('consigne.store',$client->id)}}" id="form_description">
+                    @csrf
+                    @method('POST')
+                    <div class="form-group {{$errors->has('description') ? 'has-danger':''}}">
+                        <input name="client_id" value="{{ $client->id }}" type="hidden" />
+                        <label for="exampleFormControlTextarea1">Consigne</label>
+                        <textarea name="description" class="form-control border-primary rounded {{$errors->has('description') ? 'is-invalid':''}}" id="descrption" rows="3"></textarea>
+                        @include('alerts.feedback',['field'=>'description'])
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-info">{{__('envoyer')}}</button>
+                    </div>
+                </form>
             </div>
             <div class="col-md-12">
                 <div class="card">
@@ -85,3 +93,4 @@
         </div>
     </div>
 @endsection
+

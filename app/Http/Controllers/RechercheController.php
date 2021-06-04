@@ -94,7 +94,19 @@ class RechercheController extends Controller
                 $query->whereIn('id',$type);
             });
         }
-
+        if(isset($criteres['motif']) && is_array($criteres['motif']) && count($criteres['motif']) > 0){
+            $motif=$criteres['motif'];
+            $requeteClients->whereHas('motif',function (Builder $query) use ($motif){
+                $query->whereIn('id',$motif);
+            });
+        }
+       /* if (isset($criteres['marche']) && is_array($criteres['marche']) && count($criteres['marche']) > 0){
+            $marche=$criteres['marche'];
+            $requeteClients->whereHas('marche' ,function(Builder $query) use ($marche){
+                $query->whereIn('id',$marche);
+            });
+        }
+       */
         $clients = $requeteClients->get();
 
         //$queries = DB::getQueryLog();

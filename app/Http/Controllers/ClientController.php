@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClientRequest;
 use App\Models\Commune;
+use App\Models\Consigne;
 use App\Models\Marche;
 use App\Models\Residence;
 use App\Models\User;
@@ -46,9 +47,10 @@ class ClientController extends Controller
         $motifs=Motif::all(['id','motif']);
         $statuts=Statut::all(['id','name_statut']);
         $residences=Residence::all(['id','label']);
+        $consignes=Consigne::all(['id','description']);
         //$oldInput=session()->getOldInput();
         //$client->fill($oldInput);
-        return view('clients.create',compact('client','marches','communes','motifs','statuts','residences','marches'));
+        return view('clients.create',compact('client','marches','communes','motifs','statuts','residences','marches','consignes'));
 
     }
 

@@ -37,4 +37,13 @@ class Client extends Model
     {
         return $this->belongsTo(Statut::class);
     }
+    public function Communemarche()
+    {
+        return $this->hasOneThrough(Marche::class,Commune::class);
+    }
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
 }

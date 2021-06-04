@@ -28,6 +28,7 @@ Route::get('/rechercheclient', 'App\Http\Controllers\RechercheController@recherc
 Route::resource('client','App\http\Controllers\ClientController');
 Route::resource('marche','App\Http\Controllers\MarcheController');
 Route::resource('motif','App\http\Controllers\MotifController');
+Route::resource('consigne','App\Http\Controllers\ConsigneController');
 Route::resource('technicien','App\http\Controllers\TechnicienController');
 Route::resource('competence','App\http\Controllers\CompetenceController');
 Route::resource('commune','App\Http\Controllers\CommuneController');
