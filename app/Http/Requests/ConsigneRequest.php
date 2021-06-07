@@ -26,7 +26,7 @@ class ConsigneRequest extends FormRequest
         return [
             'description'=>'required|string|between:3,600',
             'client_id'=>'required',
-            'user_id'=>'required'
+           // 'user_id'=>'required'
         ];
     }
 }

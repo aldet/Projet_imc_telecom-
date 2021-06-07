@@ -38,15 +38,14 @@ class ConsigneController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ConsigneRequest $request,Client $client)
+    public function store(ConsigneRequest $request)
     {
         $consigne=new Consigne();
         $data=$request->validated();
-        //Auth::user()->getId;
-        $this->user_id=Auth::id();
-        dd($this->user_id);
+        $client_id = $data['client_id'];
+        $consigne->user_id=Auth::id();
         $consigne->fill($data)->save();
-        return redirect()->route('client.show',$client);
+        return redirect()->route('client.show', ['client' => $client_id]);
     }
 
     /**
