@@ -74,10 +74,19 @@ class RechercheController extends Controller
         }
 
         // Si le champ de commune est rempli, on l'utilise pour faire la recherche sur le nom de la commune
-        if (isset($criteres['commune']) && is_array($criteres['commune']) && count($criteres['commune']) > 0) {
-            $communes = $criteres['commune'];
-            $requeteClients->whereHas('commune',function (Builder $query) use ($communes) {
-                $query->whereIn('id', $communes);
+        if ((isset($criteres['commune']) && is_array($criteres['commune']) && count($criteres['commune']) > 0) || (isset($criteres['marche']) && is_array($criteres['marche']) && count($criteres['marche']) > 0)){
+            $communes = $criteres['commune'] ?? [];
+            $marche = $criteres['marche'] ?? [];
+            $requeteClients->whereHas('commune',function (Builder $query) use ($communes, $marche) {
+                if (count($communes)) {
+                    $query->whereIn('id', $communes);
+                }
+                if (count($marche)) {
+                    $query->whereHas('marche' ,function(Builder $query) use ($marche){
+                        $query->whereIn('id',$marche);
+                    });
+
+                }
             });
         }
 
@@ -100,13 +109,7 @@ class RechercheController extends Controller
                 $query->whereIn('id',$motif);
             });
         }
-       /* if (isset($criteres['marche']) && is_array($criteres['marche']) && count($criteres['marche']) > 0){
-            $marche=$criteres['marche'];
-            $requeteClients->whereHas('marche' ,function(Builder $query) use ($marche){
-                $query->whereIn('id',$marche);
-            });
-        }
-       */
+
         $clients = $requeteClients->get();
 
         //$queries = DB::getQueryLog();

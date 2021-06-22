@@ -14,8 +14,4 @@ class Marche extends Model
     {
         return $this->hasMany(Commune::class);
     }
-    public function clientMarche()
-    {
-        //return $this->hasManyThrough(Client::class,Commune::class,'marche_id','commune_id','id');
-    }
 }

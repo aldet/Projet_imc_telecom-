@@ -58,9 +58,9 @@
                     <h6>Bilan client</h6>
                 </div>
                <div>
-                   <a href="#"><button type="button"  class="btn btn-info">Planifier intervention</button></a>
-                   <a href="#"><button type="button" class="btn  btn-warning">Replanifier intervention</button></a>
-                   <a href="#"><button type="button" class="btn btn-danger">Annuler intervention</button></a>
+                   <a href="#"><button type="button"  class="btn btn-info btn-lg">Planifier</button></a>
+                   <a href="#"><button type="button" class="btn  btn-warning btn-lg">Replanifier</button></a>
+                   <a href="#"><button type="button" class="btn btn-danger btn-lg">Annuler</button></a>
                </div>
                 <form method="post" action="{{route('consigne.store',$client->id)}}" id="form_description">
                     @csrf
@@ -75,6 +75,13 @@
                         <button type="submit" class="btn btn-info">{{__('envoyer')}}</button>
                     </div>
                 </form>
+                @foreach($client->users as $user)
+                <div class="card" id="user-message">
+                    <div class="card-body">
+                        <p>{{$user->name}}</p>
+                    </div>
+                </div>
+                @endforeach
             </div>
             <div class="col-md-12">
                 <div class="card">
