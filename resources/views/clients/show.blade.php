@@ -79,6 +79,7 @@
                 <div class="card" id="user-message">
                     <div class="card-body">
                         <p>{{$user->name}}</p>
+                        <p>{{$user->pivot->description}}</p>
                     </div>
                 </div>
                 @endforeach
