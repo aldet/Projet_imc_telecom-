@@ -110,7 +110,7 @@
                     <div class="text-secondary ml-3">
                        <h5>Titre</h5>
                         @foreach ($technicien->competences as $competence)
-                           <p>{{$competence->label}}</p>
+                           <strong>{{$competence->label}}</strong>
                         @endforeach
                     </div>
                     <hr>

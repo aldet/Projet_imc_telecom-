@@ -44,6 +44,7 @@ class MotifController extends Controller
     {
         $motif=new Motif();
         $motif->fill($request->validated())->save();
+        return response()->redirectToRoute('motif.index');
     }
 
     /**

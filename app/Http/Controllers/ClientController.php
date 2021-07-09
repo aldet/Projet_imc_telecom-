@@ -143,4 +143,10 @@ class ClientController extends Controller
     {
 
     }
+    public function injoignableclient(Client $client)
+    {
+        $motifs=Motif::all(['id','motif']);
+        return view('clients.injoingnable',[ 'client'=>$client,
+            'motifs'=>$motifs]);
+    }
 }

@@ -40,7 +40,7 @@ class Client extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class,'consignes')->withPivot('description');
+        return $this->belongsToMany(User::class,'consignes')->withPivot('description','created_at');
     }
 
 }

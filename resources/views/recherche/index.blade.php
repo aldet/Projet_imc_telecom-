@@ -8,16 +8,15 @@
                     <div class="card-body" id="overflowTest">
                         <form method="GET" action="{{route('rechercheclient')}}">
                             @method('GET')
-                            <input class="form-control" type="text" name="recherche" placeholder="nom client, matricule, telephone" aria-label="Search" value="{{request()->q ?? ""}}">
+                            <input class="form-control p-2" type="text" name="recherche" placeholder="nom client, matricule, telephone" aria-label="Search" value="{{request()->q ?? ""}}">
                         <select name="marche[]" class="form-control selectpicker" multiple data-live-search="true" data-title="Marchés">
                             @foreach($marches as $marche)
                                 <option value="{{$marche->id}}">{{$marche->code_marche}}</option>
                             @endforeach
                         </select>
-
-                        <select name="commune[]" class="form-control selectpicker" multiple data-live-search="true" data-title="Communes">
+                        <select name="commune[]" class="form-control  selectpicker"  multiple data-live-search="true" data-title="Communes" id="color-select">
                             @foreach($communes as $commune)
-                                <option value="{{$commune->id}}">{{$commune->name_commune}}</option>
+                                <option  value="{{$commune->id}}">{{$commune->name_commune}}</option>
                             @endforeach
                         </select>
                             <select name="type[]" class="form-control selectpicker text-center" multiple data-live-search="true" data-title="Type résidence">
@@ -25,7 +24,7 @@
                                     <option value="{{$residence->id}}">{{$residence->label}}</option>
                                 @endforeach
                             </select>
-                            <select name="adresse[]" class="form-control selectpicker text-center" multiple data-live-search="true" data-title="Adresse client">
+                            <select name="adresse[]" id="color-select" class="form-control selectpicker text-center" multiple data-live-search="true" data-title="Adresse client" data->
                                 @foreach($clients as $client)
                                     <option value="{{$client->id}}">{{$client->personne->adresse}}</option>
                                 @endforeach
@@ -52,10 +51,10 @@
                             </select>
                             <select name="motif[]" class="form-control selectpicker" multiple data-live-search="true" data-title="Motifs">
                                 @foreach($motifs as $motif)
-                                    <option value="{{$motif->id}}">{{$motif->motif}}</option>
+                                    <option value="{{$motif->id}}">{{$motif->motif}}</strong></option>
                                 @endforeach
                             </select>
-                           <div class="card-footer mr-0" id="button-footer">
+                           <div class="card-footer mr-0 text-center">
                                 <a href="{{route('home')}}"><button type="button" class="btn btn-warning"><i class="fas fa-trash-alt"></i></button></a>
                                 <button type="submit" class="btn btn-info">Appliquer</button>
                           </div>
@@ -69,6 +68,6 @@
     #overflowTest
     {
         overflow: scroll;
-        background-color: #0c2646;
+        background-color: #002752;
     }
 </style>

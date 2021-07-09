@@ -12,7 +12,7 @@
                 <div class="alert alert-dark text-black-50" role="alert">
                     <h6 class="alert-heading text-uppercase">{{$client->personne->name}} {{$client->personne->prenom}}</h6>
                     <p>{{$client->residence ? $client->residence->label : ""}}</p>
-                    <p><i class="fas fa-mobile-alt"></i>{{$client->personne->telephone}}</p>
+                    <p><i class="fas fa-mobile-alt"></i> {{$client->personne->telephone}}</p>
                 </div>
                 <div class="alert alert-info"  role="alert">
                    <div>
@@ -28,6 +28,11 @@
                        <div id="marche">
                            <div class="text-secondary">Marché/Commande</div>
                            <p>{{$client->commune->marche ? $client->commune->marche->code_marche : ""}}</p>
+                           <div id="maille">
+                               <div class="text-secondary">Maille</div>
+                               <p>Debut: {{$client->commune->marche ? $client->commune->marche->date_debut : ""}} </p>
+                               <p>Fin: {{$client->commune->marche ? $client->commune->marche->date_fin : ""}}</p>
+                           </div>
                        </div>
                         <div id="adresse">
                             <div class="text-secondary"><i class="fas fa-map-marker-alt"></i> Adresse client</div>
@@ -38,8 +43,7 @@
                         <div class="information">
                             <div class="title">Informations complémentaires</div>
                                 <div id="matricule">
-                                <p class="text-secondary">Matricule</p>
-                                <p>{{$client->matricule}}</p>
+                                <p class="text-secondary">Matricule: {{$client->matricule}}</p>
                             </div>
                             <div id="email">
                                 <p class="text-secondary"><i class="far fa-envelope"></i> Email</p>
@@ -59,8 +63,7 @@
                 </div>
                <div>
                    <a href="#"><button type="button"  class="btn btn-info btn-lg">Planifier</button></a>
-                   <a href="#"><button type="button" class="btn  btn-warning btn-lg">Replanifier</button></a>
-                   <a href="#"><button type="button" class="btn btn-danger btn-lg">Annuler</button></a>
+                   <a href="#"><button type="button" class="btn  btn-warning btn-lg">Contact infructueux</button></a>
                </div>
                 <form method="post" action="{{route('consigne.store',$client->id)}}" id="form_description">
                     @csrf
@@ -78,7 +81,7 @@
                 @foreach($client->users as $user)
                 <div class="card" id="user-message">
                     <div class="card-body">
-                        <p>{{$user->name}}</p>
+                        <p id="text-user">{{$user->name}} le {{$user->pivot->created_at->format('d-m-y H:i:s')}}</p>
                         <p>{{$user->pivot->description}}</p>
                     </div>
                 </div>

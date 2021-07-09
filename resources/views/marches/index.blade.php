@@ -22,6 +22,9 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Code</th>
                                 <th scope="col">Nom marché</th>
+                                <th scope="col">Date debut</th>
+                                <th scope="col">Date fin</th>
+                                <th scope="col">Statut</th>
                                 <th scope="col">Voir</th>
                                 <th scope="col">Modifier</th>
                                 <th scope="col">Supprimer</th>
@@ -33,6 +36,9 @@
                                     <td>{{$marche->id}}</td>
                                     <td>{{$marche->code_marche}}</td>
                                     <td>{{$marche->label_marche}}</td>
+                                    <td>{{$marche->date_debut}}</td>
+                                    <td>{{$marche->date_fin}}</td>
+                                    <td>{{$marche->statut}}</td>
                                     <td>
                                         <a href="{{ route('marche.show',$marche->id) }}"><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
                                     </td>

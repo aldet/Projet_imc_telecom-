@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Consigne extends Model
 {
     use HasFactory;
-    protected $fillable=['description','client_id','user_id'];
+    protected $fillable=['description','created_at','client_id','user_id'];
 }

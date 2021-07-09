@@ -26,6 +26,10 @@ class MarcheRequest extends FormRequest
         return [
             'code_marche'=>['required','min:2','max:50'],
             'label_marche'=>'required',
+            'date_debut'=> 'required|date',
+            'date_actu'=> 'required|date',
+            'statut'=>'required',
+            'date_fin'=>'required|date|date'
         ];
     }
 }
