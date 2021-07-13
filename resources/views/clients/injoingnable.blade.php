@@ -19,7 +19,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label class="form-control-label" for="form_residence_id">{{__('Type residence')}}</label>
+                                    <label class="form-control-label" for="form_residence_id">{{__('Motif')}}</label>
                                     <div class="select">
                                         <select name="client[motif_id]" class="form-control">
                                             @foreach($motifs as $motif)
@@ -38,6 +38,10 @@
                                     <textarea class="form-control" name="description"></textarea>
                                 </div>
                             </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="{{route('client.index')}}" class="btn btn-default btn-round mr-4">{{__('Cancel')}}</a>
+                            <button type="submit" class="btn btn-primary btn-round">{{__('Save')}}</button>
                         </div>
                     </form>
                 </div>

@@ -63,7 +63,7 @@
                 </div>
                <div>
                    <a href="#"><button type="button"  class="btn btn-info btn-lg">Planifier</button></a>
-                   <a href="#"><button type="button" class="btn  btn-warning btn-lg">Contact infructueux</button></a>
+                   <a href="{{route('injoignable',$client->id)}}"><button type="button" class="btn  btn-warning btn-lg">Contact infructueux</button></a>
                </div>
                 <form method="post" action="{{route('consigne.store',$client->id)}}" id="form_description">
                     @csrf

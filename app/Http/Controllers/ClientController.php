@@ -149,4 +149,21 @@ class ClientController extends Controller
         return view('clients.injoingnable',[ 'client'=>$client,
             'motifs'=>$motifs]);
     }
+
+    public function changementContact(Client $client)
+    {
+        $motifs=Motif::all(['id','motif']);
+        return view('clients.changement',[
+            'motifs'=>$motifs,
+            'client'=>$client
+        ]);
+    }
+    public function refus(Client $client)
+    {
+        $motifs=Motif::all(['id','motif']);
+        return view('clients.refus',[
+            'motifs'=>$motifs,
+            'client'=>$client
+        ]);
+    }
 }

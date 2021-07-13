@@ -27,6 +27,8 @@ Route::get('/planing','App\Http\Controllers\PlaningController@index')->name('pla
 Route::get('/resultat', 'App\Http\Controllers\RechercheController@resultat')->name('resultat');
 Route::get('/rechercheclient', 'App\Http\Controllers\RechercheController@rechercheclient')->name('rechercheclient');
 Route::get('/injoignable','App\Http\Controllers\ClientController@injoignableclient')->name('injoignable');
+Route::get('/changement','App\Http\Controllers\ClientController@changementContact')->name('changement');
+Route::get('/refus','App\Http\Controllers\ClientController@refus')->name('refus');
 Route::resource('client','App\http\Controllers\ClientController');
 Route::resource('marche','App\Http\Controllers\MarcheController');
 Route::resource('motif','App\http\Controllers\MotifController');
