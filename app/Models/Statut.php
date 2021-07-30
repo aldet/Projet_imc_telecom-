@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Statut extends Model
 {
     use HasFactory;
-    protected $fillable=['name_statut'];
+    protected $fillable=['name_statut','type_statut'];
 
     public function client()
     {

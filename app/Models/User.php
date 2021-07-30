@@ -66,6 +66,12 @@ class User extends Authenticatable
     }
     public function clients()
     {
-        return $this->belongsToMany(Client::class,'consignes')->withPivot('description');
+        return $this->belongsToMany(Client::class);
     }
+
+    public function consignes()
+    {
+        return $this->hasMany(Consigne::class);
+    }
+
 }

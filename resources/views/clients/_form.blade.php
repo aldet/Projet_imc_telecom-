@@ -82,10 +82,10 @@
     </div>
 </div>
 <div class="form-group">
-    <label class="form-control-label" for="form_statut_id">{{__('Statut')}}</label>
+    <label class="form-control-label" for="form_statut_id">{{__('Statut RDV')}}</label>
     <div class="select">
         <select name="client[statut_id]" class="form-control">
-            @foreach($statuts as $statut)
+            @foreach($statuts_rdv as $statut)
                 <option value="{{$statut->id}}">{{$statut->name_statut}}</option>
             @endforeach
         </select>
@@ -93,7 +93,7 @@
 </div>
 
 <div class="form-group">
-    <label class="form-control-label" for="form_residence_id">{{__('Type residence')}}</label>
+    <label class="form-control-label" for="form_residence_id">{{__('Type motif')}}</label>
     <div class="select">
         <select name="client[motif_id]" class="form-control">
             @foreach($motifs as $motif)

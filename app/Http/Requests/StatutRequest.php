@@ -25,6 +25,7 @@ class StatutRequest extends FormRequest
     {
         return [
             'name_statut'=>['required','min:2','max:50'],
+            'type_statut'=>['min:2','max:50']
         ];
     }
 }

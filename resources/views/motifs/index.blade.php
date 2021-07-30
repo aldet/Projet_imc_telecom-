@@ -22,6 +22,7 @@
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Motif</th>
+                                <th scope="col">Type motif</th>
                                 <th scope="col">Voir</th>
                                 <th scope="col">Modifier</th>
                                 <th scope="col">Supprimer</th>
@@ -32,6 +33,7 @@
                                 <tr>
                                     <td>{{$motif->id}}</td>
                                     <td>{{$motif->motif}}</td>
+                                    <td>{{ $motif->type_motif }}</td>
                                     <td>
                                         <a href="{{ route('motif.show',$motif->id) }}"><button type="button" class="btn btn-info"><i class="fas fa-eye"></i></button></a>
                                     </td>

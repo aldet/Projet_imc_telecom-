@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ConsigneRequest extends FormRequest
+class StatutRefusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,8 @@ class ConsigneRequest extends FormRequest
     public function rules()
     {
         return [
-            'description'=>'required|string|between:3,600',
-            'client_id'=>'required',
-            'date_consigne'=>'required',
-            'nouveau_contact'=>'required',
-            'statut_client_id'=>'required'
-           // 'user_id'=>'required'
+            'description'=>'required',
+            'client_id'=>'required'
         ];
     }
 }

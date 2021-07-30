@@ -23,12 +23,18 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
-Route::get('/planing','App\Http\Controllers\PlaningController@index')->name('planing');
+Route::resource('/planing','App\Http\Controllers\PlaningController');
 Route::get('/resultat', 'App\Http\Controllers\RechercheController@resultat')->name('resultat');
 Route::get('/rechercheclient', 'App\Http\Controllers\RechercheController@rechercheclient')->name('rechercheclient');
-Route::get('/injoignable','App\Http\Controllers\ClientController@injoignableclient')->name('injoignable');
-Route::get('/changement','App\Http\Controllers\ClientController@changementContact')->name('changement');
-Route::get('/refus','App\Http\Controllers\ClientController@refus')->name('refus');
+Route::get('/injoignable/{client}','App\Http\Controllers\ConsigneController@Injoignable')->name('injoignable');
+Route::get('/injoignable-action/{client}','App\Http\Controllers\ConsigneController@injoignableAction')->name('injoignable-action');
+Route::get('/changement-contact/{client}','App\Http\Controllers\ConsigneController@changementContact')->name('changement-contact');
+Route::get('/changemnt-action/{client}','App\Http\Controllers\ConsigneController@changementContactAction')->name('changement-action');
+Route::get('/statut-client','App\Http\Controllers\StatutController@statutClient')->name('statut-client');
+Route::get('/statut-rdv','App\Http\Controllers\StatutController@statutRdv')->name('statut-rdv');
+Route::get('/refus/{client}','App\Http\Controllers\ConsigneController@refus')->name('refus');
+Route::get('/refus-action/{client}','App\Http\Controllers\ConsigneController@refusAction')->name('refus-action');
+Route::get('/statut-form/{statut}/{client}','App\Http\Controllers\StatutController@ChoixDuformulaire')->name('statut-form');
 Route::resource('client','App\http\Controllers\ClientController');
 Route::resource('marche','App\Http\Controllers\MarcheController');
 Route::resource('motif','App\http\Controllers\MotifController');

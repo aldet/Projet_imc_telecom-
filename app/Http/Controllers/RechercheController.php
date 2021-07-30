@@ -30,9 +30,10 @@ class RechercheController extends Controller
         $statuts=Statut::all('id','name_statut');
         $clients=Client::with(["personne"])->get();
         $techniciens=Technicien::with(["personne","competences"])->get();
+        $statuts_client=Statut::where('type_statut','client')->get();
         //$techniciens->personne=Personne::all('id');
         return view('recherche.index',compact('motifs','communes','statuts','clients',
-            'techniciens','residences','marches'));
+            'techniciens','residences','marches','statuts_client'));
 
     }
 

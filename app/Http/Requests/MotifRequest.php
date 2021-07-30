@@ -25,6 +25,7 @@ class MotifRequest extends FormRequest
     {
         return [
             'motif'=>'required',
+            'type_motif'=>['nullable','min:2','max:50']
         ];
     }
 }

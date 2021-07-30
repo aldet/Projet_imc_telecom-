@@ -54,6 +54,11 @@
                                     <option value="{{$motif->id}}">{{$motif->motif}}</strong></option>
                                 @endforeach
                             </select>
+                            <select name="type_statut[]" class="form-control selectpicker" multiple data-live-search="true" data-title="Statut client">
+                                @foreach($statuts_client as $statut_client)
+                                    <option value="{{$statut_client->id}}">{{$statut_client->name_statut}}</strong></option>
+                                @endforeach
+                            </select>
                            <div class="card-footer mr-0 text-center">
                                 <a href="{{route('home')}}"><button type="button" class="btn btn-warning"><i class="fas fa-trash-alt"></i></button></a>
                                 <button type="submit" class="btn btn-info">Appliquer</button>

@@ -26,7 +26,7 @@ class ClientController extends Controller
     public function index()
     {
         /** @var Client[] $clients */
-        $clients = Client::with(["personne","commune","residence","statut"])->get();
+        $clients = Client::with(["personne","commune","residence","statut","motif","users"])->get();
         //dd($clients);
         return view('clients.index',
             ['clients' => $clients]);
@@ -45,12 +45,12 @@ class ClientController extends Controller
         $communes=Commune::all(['id','name_commune']);
         $marches=Marche::all(['id','code_marche']);
         $motifs=Motif::all(['id','motif']);
-        $statuts=Statut::all(['id','name_statut']);
+        $statuts_rdv=Statut::where('type_statut','rdv')->get();
         $residences=Residence::all(['id','label']);
         $consignes=Consigne::all(['id','description']);
         //$oldInput=session()->getOldInput();
         //$client->fill($oldInput);
-        return view('clients.create',compact('client','marches','communes','motifs','statuts','residences','marches','consignes'));
+        return view('clients.create',compact('client','marches','communes','motifs','statuts_rdv','residences','marches','consignes'));
 
     }
 
@@ -64,6 +64,7 @@ class ClientController extends Controller
     {
         $client = new Client();
         $data = $request->validated();
+        //$statut_client_id=$data['statut_client_id']
         //dd($data);
         try {
             DB::beginTransaction();
@@ -84,9 +85,13 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
-    {
-        return view('clients.show',['client' =>$client]);
+    public function show(Client $client,Statut $statut)
+    {   
+        $statuts_client=Statut::where('type_statut','client')->get();
+        return view('clients.show',[
+            'client' =>$client,
+            'statut'=>$statut,
+            'statuts_client'=>$statuts_client]); 
     }
 
     /**
@@ -100,14 +105,14 @@ class ClientController extends Controller
         $communes=Commune::all(['id','name_commune']);
         $residences=Residence::all(['id','label']);
         $motifs=Motif::all(['id','motif']);
-        $statuts=Statut::all(['id','name_statut']);
+        $statuts_rdv=Statut::where('type_statut','rdv')->get();
         $marches=Marche::all(['id','code_marche']);
         return view('clients.edit',[
             'client'=>$client,
             'communes'=>$communes,
             'residences'=>$residences,
             'motifs'=>$motifs,
-            'statuts'=>$statuts,
+            'statuts_rdv'=>$statuts_rdv,
             'marches'=>$marches
         ]);
     }
@@ -141,14 +146,9 @@ class ClientController extends Controller
     }
     public function recherche()
     {
-
+        
     }
-    public function injoignableclient(Client $client)
-    {
-        $motifs=Motif::all(['id','motif']);
-        return view('clients.injoingnable',[ 'client'=>$client,
-            'motifs'=>$motifs]);
-    }
+    
 
     public function changementContact(Client $client)
     {
@@ -166,4 +166,5 @@ class ClientController extends Controller
             'client'=>$client
         ]);
     }
+
 }

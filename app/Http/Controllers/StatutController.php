@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StatutRequest;
 use Illuminate\Http\Request;
 use App\Models\Statut;
+use App\Models\Client;
+
 
 class StatutController extends Controller
 {
@@ -97,5 +99,39 @@ class StatutController extends Controller
     {
         $statut->delete();
         return redirect()->route('statut.index');
+    }
+
+    public function statutClient()
+    {
+        $statuts_client=Statut::where('type_statut','client')->get();
+        return view('statuts.statutClient',[
+            'statuts_client'=>$statuts_client
+        ]);
+    }
+
+    public function statutRdv()
+    {
+        $statuts_rdv=Statut::where('type_statut','rdv')->get();
+        return view('statuts.statutRdv',[
+            'statuts_rdv'=>$statuts_rdv
+        ]);
+    }
+
+    public function choixDuFormulaire($statut,Client $client)
+    {
+        switch ($statut) {
+            case 10:
+                return response()->redirectToRoute('injoignable',['client'=>$client->id]);
+                break;
+            case 11:
+                return response()->redirectToRoute('refus',['client'=>$client->id]);
+                break;
+            case 12:
+                return response()->redirectToRoute('changement-contact',['client'=>$client->id]); 
+                break;   
+            default:
+                return respnse()->redirectToRoute('clients.show');
+                break;
+        }
     }
 }

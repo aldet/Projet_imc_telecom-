@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PlaningRequest;
+use App\Models\Planing;
 
 class PlaningController extends Controller
 {
@@ -12,8 +14,11 @@ class PlaningController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('planing.index');
+    {    
+        $events=Planing::all();
+        $data=$events->toJson();
+        //dd($data);
+        return view('planing.index',compact('data'));
     }
 
     /**
@@ -23,7 +28,7 @@ class PlaningController extends Controller
      */
     public function create()
     {
-        //
+        return view('planing.create');
     }
 
     /**
@@ -32,9 +37,13 @@ class PlaningController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PlaningRequest $request)
     {
-        //
+        $planing=new Planing();
+        $data=$request->validated();
+        //dd($data);
+        $planing->fill($data)->save();
+         return response()->redirectToRoute('planing.index');
     }
 
     /**

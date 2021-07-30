@@ -63,7 +63,16 @@
                 </div>
                <div>
                    <a href="#"><button type="button"  class="btn btn-info btn-lg">Planifier</button></a>
-                   <a href="{{route('injoignable',$client->id)}}"><button type="button" class="btn  btn-warning btn-lg">Contact infructueux</button></a>
+                   <div class="dropdown">
+                      <button class="btn btn-warning btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Contact infructueux
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          @foreach ($statuts_client as $statut_client)
+                            <a class="dropdown-item" href="{{route('statut-form',['client'=>$client->id,'statut'=>$statut_client->id])}}">{{ $statut_client->name_statut }}</a>
+                          @endforeach
+                      </div>
+                   </div>
                </div>
                 <form method="post" action="{{route('consigne.store',$client->id)}}" id="form_description">
                     @csrf
@@ -78,11 +87,13 @@
                         <button type="submit" class="btn btn-info">{{__('envoyer')}}</button>
                     </div>
                 </form>
-                @foreach($client->users as $user)
+                @foreach($client->consignes as $consigne)
                 <div class="card" id="user-message">
                     <div class="card-body">
-                        <p id="text-user">{{$user->name}} le {{$user->pivot->created_at->format('d-m-y H:i:s')}}</p>
-                        <p>{{$user->pivot->description}}</p>
+                        <p id="text-user">{{$consigne->user ? $consigne->user->name: ""}} {{ $client->statut->name_statut }}</p>
+                        <p id="text-user">Date:{{ $consigne->created_at }}</p>
+                        <p>{{$consigne->description}}</p>
+                        <p>{{$consigne->statut_client_id}}</p>
                     </div>
                 </div>
                 @endforeach

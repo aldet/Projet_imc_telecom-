@@ -43,7 +43,9 @@ class MotifController extends Controller
     public function store(MotifRequest $request)
     {
         $motif=new Motif();
-        $motif->fill($request->validated())->save();
+        $data=$request->validated();
+        //dd($data);
+        $motif->fill($data)->save();
         return response()->redirectToRoute('motif.index');
     }
 
